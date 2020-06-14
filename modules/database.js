@@ -3,7 +3,7 @@ const admin = require ("firebase-admin");
 const fire = require("../firebase.json");
 const fir = admin.initializeApp({
   credential: admin.credential.cert(fire),
-  databaseURL: "https://bots-of-discord-fdfe7.firebaseio.com"
+  databaseURL: ""
 
 })
 const db = admin.firestore();
