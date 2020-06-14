@@ -153,7 +153,7 @@ m.on("edit", (req, root) => {
 
 
     
-  
+
   client.channels.get(ch).send(hm);
 
 });
@@ -237,7 +237,7 @@ m.on("vote",async (req,bot) => {
   
     const dl = {
   "username": "BOTS OF DISCORD",
-  "avatar_url": "https://cdn.discordapp.com/avatars/644375115219337216/8e7a3b45df0652554623e538fb054bad.png?size=256",
+  "avatar_url": "https://cdn.discordapp.com/avatars/644375115219337216/8e7ab054bad.png?size=256",
   
   "embeds": [
     {
@@ -268,7 +268,7 @@ m.on("vote",async (req,bot) => {
 function wh(url) {
 fetch (url,{method:"post",headers:{"Content-type":"application/json"},body: JSON.stringify(dl)})
   };
-    wh("https://discordapp.com/api/webhooks/694223461698109570/yRl5p-HmFlD3K60Kja9BzuciNHBybHbI_CCTWX-DhU-cZ4MtZpL77Gho0BZg9HC0i01u");
+    wh("https://discordapp.com/api/webhooks/694223461698109570/yRl5p-HmFlDybHbI_CCTWX-DhU-cZ4MtZpL77Gho0BZg9HC0i01u");
     if(bot.dwh) {
       wh(bot.dwh);
       
