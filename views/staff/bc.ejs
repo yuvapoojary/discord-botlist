@@ -1,0 +1,29 @@
+<%- include("../parts/header.ejs") %>
+
+<br>
+    <div class="page-title">BLACKLISTED</div>
+
+      
+   <%  if(dat. length == 0) { %>
+<center><img class="bh" src="https://cdn.discordapp.com/attachments/629965788488400909/683641760257277985/IMG_20200301_171756.jpg"></center>
+
+      <h3 style="text-align: center;color: white" class="mx-auto">No bots are blacklisted.</h3>
+      <% } else { %>
+<div class="bot" id="bot">
+    
+      <%-include("../parts/card.ejs",{dat,search:true}) %>
+</div>
+      </div>
+      <% } %>
+    </div>
+
+<script>
+  window.onload = function ()
+
+
+</script>
+
+
+  
+
+<%- include('../parts/footer.ejs') %>

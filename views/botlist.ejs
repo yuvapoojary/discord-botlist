@@ -1,0 +1,19 @@
+<%- include("./parts/header") %>
+<br>
+    <div class="page-title">BOT LISTS</div>
+
+      
+   <%  if(dat. length == 0) { %>
+      <h3 class="mx-auto">No bots available to list.</h3>
+      <% } else { %>
+<div class="bot" id="bot">
+    
+      <%-include("./parts/card.ejs",{dat,search:true}) %>
+</div>
+      </div>
+      <% } %>
+    </div>
+
+  
+
+<%- include('./parts/footer.ejs') %>

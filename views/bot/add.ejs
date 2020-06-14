@@ -1,0 +1,110 @@
+
+
+
+<%- include('../parts/header.ejs') %>
+
+
+
+    <script src="http://www.google.com/jsapi?key=ABQIAAAA1XbMiDxx_BTCY2_FkPh06RRaGTYH6UMl8mADNa0YKuWNNa8VNxQEerTAUcfkyrr6OwBovxn7TDAH5Q">    </script>
+<script src="/select.js"></script>
+<link rel="stylesheet" href="/style.css">
+<style>
+  .form-group,.form-control{
+    width:auto !important;
+  }
+  label a {
+    color: red !important;
+  }
+</style>
+<div class="page-title">
+  ADD BOT 
+</div>
+<div class="box">
+
+        
+
+    <form method="POST">
+        <div class="form-group">
+          <label for="i1">Client ID <a>*</a></label>
+                <input class="form-control" maxlength="40" name="client_id" type="text" placeholder="488053883654897664" id="i1" required>
+        </div>
+      
+        <div class="form-group">
+            <label for="pr">Prefix <a>*</a></label>
+    
+                <input class="form-control" id="pr" name="prefix" maxlength="6" type="text" placeholder="?" required>
+        </div>  
+      
+        <div class="form-group">
+          <label for="li">Bot Library <a>*</a> </label>
+                    <select name="library" class="form-control" id="li" required>
+                            <option value="" disabled selected>Select One</option>
+                      <% libs.map(lib => { %>
+                      <option value="<%= lib %>"><%= lib %></option>
+                      <% }) %>
+          </select>
+        </div> 
+      
+      <div class="form-group">
+        <label for="tag">Tags <a>*</a></label>
+            <select multiple name="tags[]" id="tag" class="form-control" required>
+              <option value="" disabled selected>Select multiple</option>
+              <% tags.map(tag => { %>
+              <option value="<%= tag %>"><%=tag %></option>
+              <% }) %>
+            </select>
+      </div>
+            
+      
+        <div class="form-group">
+                <label for="op">Invite URL</label>
+
+                    <input class="form-control" maxlength="400" name="invite" id="op" type="url" placeholder="">
+                </div>
+         
+            <div class="form-group">
+                    <label for="ll">Additional Owner IDs (Max. 3)</label>
+                        <input class="form-control" id="ll" name="owners" maxlength="200" type="text" placeholder="423220263161692161,310081310335172608">
+                    </div>
+              
+                <div class="form-group">
+                  <label for="lbl">Short Description <a>*</a></label>
+                            <input class="form-control" id="lbl" name="short_desc" minlength="20" maxlength="50" type="text" required>
+                        </div>
+              
+                <div class="form-group">
+                  <label for="labl">Long Description(Supports markdown) <a>*</a></label>
+                    
+                          <textarea class="form-control" name="long_desc" id="labl" class="textarea" rows="5" minlength="150" required></textarea>
+                        </div>
+                      
+                      <div class="form-group">
+                            <label for="io">GitHub URL</label>
+                        
+                                <input class="form-control" id="io" maxlength="200" name="github" type="url" placeholder="https://github.com/gg">
+                            </div>
+                    
+                        <div class="form-group">
+                                <label for="oo">Support Server</label>
+                                
+                                    <input class="form-control" id="oo" maxlength="200" name="support" type="url" placeholder="https://discord.gg/SQmfu42">
+                                </div>
+                            
+                            <div class="form-group">
+                                    <label for="lp">Website URL</label>
+                                    
+                                      <input name="website" id="lp" maxlength="100" type="url" placeholder="https://b-o-d.cf"
+class="form-control"></input>
+                                    </div>
+                                                             
+            
+                <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+</div>
+
+
+  <footer>
+<%- include("../parts/footer.ejs") %>
+<footer>

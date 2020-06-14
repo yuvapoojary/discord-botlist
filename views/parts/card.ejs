@@ -1,0 +1,122 @@
+
+
+<link rel="stylesheet" href="/card1.css"/>
+
+<body style="background-color:whitesmoke !important">
+  
+  
+    <% dat.map(bot => {%>
+    
+    
+    <% 
+    let servers;
+    if(bot.server_count == 0) {
+      servers = "N/A"
+    } else {
+      servers = bot.server_count  + "  servers"
+    };
+    let status;
+    if(_client.users.has(bot.id)) {
+       status = _client.users.get(bot.id).presence.status;
+    } else {
+      status = "offline"
+    };
+    %>
+  
+    
+  <span class="rw">
+      <div class="clmn">
+        
+        <div class="cardz" onclick="window. location. href='/bots/<%= bot.id %>'">
+          
+      <div class="im">
+    <img class="picicon" src="https://cdn.discordapp.com/avatars/<%= bot.id %>/<%= bot.avatar %>.png" alt="image">
+      </div>
+    
+      
+        <div class="ct">
+      
+                      <center>
+                      <div onclick="alert('votes')" style="display: inline-block !important;left:0;font-weight:bold;"  class="votes"><div style="font-size:16px;"></div>^ <%= bot.votes %></div>
+        </center>
+          <center>
+                                                                           
+        <div class="status" style="right:0; left:0" ><i class="i m<%= status %>"></i><a class="<%= status %>"><%= status %></a></div>
+          </center>
+          <center>
+          <div class="bt" style="top:10px;left:0;right:0"><%= servers %></div>
+          </center>
+      
+          </div>
+          <div class="cntext">
+          
+          
+        <div class="bn"><%= bot.name %><% if(bot.certified == true) { %>&nbsp; <img style="height:25px;width:25px" alt="image" src="/Certificate_seal-512.png"><% } %></div>
+      <div  style="padding:0;font-size:14px" class="shortd bs">
+        <%= bot.short_desc %>
+            </div>
+          </div>
+        
+      
+        <div class="foot">
+          <div class="hr"><hr></div>
+          
+        
+                    
+          <style>
+            div.hr {
+        position:relative !important;
+
+            }
+            
+            hr {
+             position: relative !important;
+              width:245px;
+              align:center;
+            }
+            .g {
+              border: none;
+              background: none;
+            }
+            a.g:hover {
+              font-weight:bold;
+              background-color:#7289D9;
+              color: white;
+              outline:0;
+              border-radius:4px;
+            }
+            a.ini{
+              position: relative;
+              left:0
+            
+            }
+            a.v {
+              position: relative;
+              
+              left:95px;
+              
+              
+            }
+          </style>
+        <a class="g btn ini"  href='/bot/<%= bot.id %>/invite'>INVITE</a>
+          <a class="g btn v"  href='/bots/<%= bot.id %>'>VIEW</a>
+          </div>
+        
+      
+  
+      
+      </div>
+      </div>
+      <div style="display:none"><%= bot.tags %></div>
+      
+  
+    <% }) %>
+  
+  </span>
+  
+  
+  
+  
+  
+
+

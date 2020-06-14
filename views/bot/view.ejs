@@ -1,0 +1,155 @@
+<head>
+  
+  
+	<meta name="description" content="<%= bot.short_desc%>">
+	
+	<link rel="canonical" href="https://b-o-d.cf/bots/<%= bot.name %>">
+	
+
+	<meta name="twitter:card" value="summary">
+	<meta name="twitter:title" content="<%= bot. name%>">
+	<meta name="twitter:description" content="<%= bot.short_desc%>">
+	<meta name="twitter:image" content="https://images.discordapp.net/avatars/<%= bot.id%>/<%= bot.avatar%>.png?size=512">
+
+	<meta property="og:site_name" value="BOTS OF DISCORD">
+	<meta property="og:title" content="<%= bot.name%>" />
+	<meta property="og:url" content="https://b-o-d.cf/" />
+	<meta property="og:description" content="<%= bot.short_desc%>">
+	<meta property="og:image" content="https://images.discordapp.net/avatars/<%= bot.id %>/<%= bot.avatar %>.png?size=512" />
+
+</head>
+
+<%- include("../parts/header") %>
+<link rel="stylesheet" href="/view.css"/>
+<div id="66">
+<input id="h" style="display:none"  value="<%= bot.id%>"></input>
+<div class="cnr">
+  <center>
+  <div class="pic4"><img class="pic1" src="https://cdn.discordapp.com/avatars/<%= bot.id%>/<%= bot.avatar%>"></div>
+    <div class="status"><i class="i m<%=status%>"></i><a class="<%= status %> "> <%= status %></a></div>
+    
+    <div class="bname"><%= bot.name %><% if(bot.certified == true){%>&nbsp; <img style="height:25px;width:25px" src="/Certificate_seal-512.png"><% } %><a class="votes"> ^ <%= bot.votes %></a> </div>
+    <div class="lib"><%= bot.library %></div>
+    <div class="shortd"><%= bot.short_desc %></div>
+  
+    <button onclick="window.location.href='/bot/<%=bot.id %>/invite'" class="bbtn btn btn-orange btn-2x">INVITE</button> <button onclick="window.location.href='/bot/<%= bot.id %>/vote'" class="bbtn btn btn-orange btn-2x">VOTE</button>
+    </center>
+  <hr>
+  <div class="tools">
+    <div class="prefix">Commands Prefix:<code><%= bot.prefix%></code></div>
+    <% if(bot.server_count !== 0) { %>
+    <div class="bt"><%= bot.server_count %> servers </div>&nbsp;<% }; if(bot. shards != 0) { %> <div class="bt"> <%= bot.shards %> shards</div><% } %>
+    <br>
+    <% if(bot.website != "") { %>
+    <a href="<%= bot.website %>" class="obt a"> Visit Website</a> &nbsp;<% }; %><a class="obt b" onclick="report()" style="color: red" >Report</a>&nbsp;
+    
+    <br>
+    <% if(bot.support_server != "") { %>
+    <a href="<%= bot.support_server %>" class="obt c">Support Server</a>&nbsp;<% }; if(bot.github != "") { %>
+    <a href="<%= bot.github %>" class="obt d">Github Repo</a><% } %>
+    <br>
+    <% if(user){ %>
+    <% if(bot.owners.includes(user.id) || user.isAdmin) { %>
+    <a  href="/bot/<%= bot.id %>/edit" class="obt f">Edit</a>&nbsp;<% } ; if(bot.owner == user.id) { %><a href="/bot/<%= bot.id %>/delete" class="obt g" style="color: red">Delete</a><% } %>
+    <% if(user.isMod == true) { %>
+    <br>
+    <select class="obt" onchange="window.document.location.href = this.options[this.selectedIndex].value">
+      
+      <option disabled selected>Staff</option>
+      <option value="https://discordapp.com/oauth2/authorize?client_id=<%= bot.id %>&scope=bot&guild_id=642735787468914708">Test Invite</option>
+      <% if(user.isAdmin == true) { %>
+      <option value="https://discordapp.com/oauth2/authorize?client_id=<%= bot.id %>&scope=bot&guild_id=642339855313141761">Main Invite</option>
+      <% } %>
+      <% if(bot.approved == false) { %>
+      <option value="/staff/<%= bot.id%>/approve">Approve</option>
+      <% } %>
+      <option value="/staff/<%= bot.id %>/deny">Deny</option>
+      
+      <% if(user.isAdmin == true) { %>
+      <% if(bot.certified == true) { %>
+      <option value="/staff/<%= bot.id%>/uncertify">Uncertify</option>
+      <% } %>
+      <% if(bot.blacklist == false) { %>
+      <option value="/staff/<%= bot.id%>/blacklist">Blacklist</option>
+      <% } else { %>
+      <option  value="/staff/<%= bot.id%>/unblacklist">Unblacklist</option>
+      <% } %>
+      <% } %>
+    </select>
+    <% } }%>
+</div>
+  <hr>
+  <div class="t">
+    <div class="ttag">Bot Tags:</div>
+    <% bot.tags.map(tag => { %>
+  <div class="atag" style="text-transform:capitalize"><%= tag %></div>
+    <% }) %>
+  
+  </div>
+  <hr>
+
+    <div class="ttag" style="margin-left:10px">Created By:</div>
+  <div class="own">
+<% owners.map(m => { console.log(m); %>
+    
+  <div style="margin-left:40px; display: flex;align-items: center;justify-content: center">
+  
+  
+<a href="/user/<%=m.id %>">
+	<span class="chip chip-avatar info" >
+		<img src="https://cdn.discordapp.com/avatars/<%= m.id %>/<%=m.avatar %>.png" alt="">
+    <div class="badname">
+		<label><%= m.username %></label>
+    </div>
+	</span>
+    </a>
+    </div>
+    <% }) %>
+  </div>
+    
+      <hr>
+  <div class="ttag" style="margin-left:10px">Description:</div>
+
+      <div class="long justify-content-center">
+        <div id="d" class="desc">
+        <%- desc %>
+        </div>
+      </div>
+
+      
+  </div>
+</div>
+<script>
+  function send() {
+    let id = document.getElementById("h").value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("66").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", `/bot/${id}/vote`, true);
+  xhttp.send();
+};
+  function report() {
+    $("#body").show();
+    $("#load").hide();
+    let id = document.getElementById("h"). value;
+    
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      
+      if(this. readyState == 4 && this. status == 200) {
+    $("#body").show();
+        $('#66').html(this.responseText).fadeIn({ duration: 2000 });
+    
+      }
+    };
+    xhttp. open("GET",`/bot/${id}/report`,true);
+    xhttp. send ()
+  }
+  
+</script>
+
+<%- include("../parts/footer") %>

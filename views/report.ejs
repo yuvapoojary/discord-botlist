@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    .form-group,.form-control {
+      width:auto;
+      max-width:100%;
+    }
+    </style>
+<body style="background-color: white !important">
+  <link rel="stylesheet" href="/custom.css">
+  
+  <div class="box" style="background-color: white">
+    <center>
+    <div class="pics"><img style="height:200px;width:200px;border:solid black;border-width:1px"  src="https://cdn.discordapp.com/avatars/<%= bot.id %>/<%= bot.avatar%>" alt="Loading"></div>
+    </center>
+    <br>
+    <hr>
+    <form method="post" action="/bot/<%= bot.id %>/report">
+   <center class="form-group" style="width:auto"> <select name="r1" class="form-control">
+      <% rs.map(r => { %>
+      <option value="<%= r%>"><%= r %></option>
+      <% })%>
+    </select>
+    </center>
+    <center class="form-group" style="width:auto"><input name="r2" required class="form-control"></input></center>
+    <br>
+    <center>
+    <button type="submit" onclick=' alert ("Reported")' class="btn btn-primary">Report <%=bot.name%></button>
+    </center>
+    </form>
+    
+  </div>
+  
+  
+  <script>
+  
+
+  </script>
+  </body>
+</html>

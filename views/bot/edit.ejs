@@ -1,0 +1,187 @@
+<%- include('../parts/header.ejs') %>
+<div class="page-title">
+  EDIT BOT
+</div>
+<style>
+  label a {
+    color:red !important;
+  }
+</style>
+    <script src="http://www.google.com/jsapi?key=ABQIAAAA1XbMiDxx_BTCY2_FkPh06RRaGTYH6UMl8mADNa0YKuWNNa8VNxQEerTAUcfkyrr6OwBovxn7TDAH5Q"> </script>
+<script src="/select.js"></script>
+<link rel="stylesheet" href="/style.css" />
+
+<div class="box">
+
+    <form method="POST" onsubmit="get('<%= bot.id%>')" id="fm">
+        <div class="form-group">
+          <label for="id">Client ID <a>*</a></label>
+          
+                <input class="form-control" id="id" maxlength="40" name="client_id" type="text" value="<%= bot.id %>" readonly>
+          
+        </div>
+        <div class="form-group">
+            <label for="prefix">Prefix <a>*</a></label>
+            
+                <input class="form-control" id="prefix" name="prefix" maxlength="6" type="text" value="<%= bot. prefix %>" required>
+          
+        </div>  
+        <div class="form-group">
+                <label for="library">Bot Library <a>*</a> </label>
+                    <select class="form-control" name="library" id="library" required>
+                      <option value="<%= bot.library%>"><%= bot.library %></option>
+                      
+     <% libs.filter(g => g != bot.library).map(lib => { %>               <option value="<%=lib %>"><%= lib %></option>
+                      <% }) %>
+          </select>
+        </div> 
+      <div style="display:none" id="tzt"><%= bot.tags %></div>
+      <div class="form-group">
+        <label for="tag">Tags <a>*</a></label>
+  
+          
+            <select multiple name="tags[]" id="tag" class="form-control">
+            
+          
+              <% tags.map(tag => { %>
+              <option value="<%=tag %>"><%= tag %></option>
+              <% }) %>
+            </select>
+      
+      
+      </div>
+            
+    
+        <div class="form-group">
+                <label for="invite">Invite URL <a>*</a></label>
+              
+                    <input class="form-control" maxlength="400" name="invite" type="url" value="<%=bot.invite%>" id="invite">
+                
+            </div> 
+            <div class="form-group">
+                    <label for="owners">Additional Owner IDs (Max. 3)</label>
+              <% let own = bot.owners. filter (id => id != user.id) %>
+                    
+                        <input class="form-control" id="owners" name="owners" maxlength="200" type="text" value="<%=own%>">
+                  
+                </div>
+                <div class="form-group">
+                        <label for="short_desc">Short Description <a>*</a></label>
+                        
+                            <input class="form-control" id="short_desc" name="short_desc" minlength="15" maxlength="50" type="text" value="<%=bot.short_desc %>" required>
+                        
+                </div>  
+                <div class="form-group">
+                  <label for="long_desc">Long Description(Supports markdown) <a>*</a></label>
+                      
+                          <textarea minlength="150" class="form-control" id="long_desc" name="long_desc" class="textarea" rows="5" required><%= bot.long_desc %>"</textarea>
+                      
+                      </div>   
+                      <div class="form-group">
+                            <label for="gitub">Github URL</label>
+                            
+                                <input class="form-control" id="github" maxlength="200" name="github" type="url" value="<%=bot.github %>">
+                        
+                        </div>  
+                        <div class="form-group">
+                                <label for="lag">Support Server</label>
+                              
+                                    <input class="form-control" id="lag" maxlength="200" name="support" type="url" value="<%=bot.support_server %>">
+                                </div>
+                            
+                            <div class="form-group">
+                                    <label for="hg">Website URL</label>
+                                  
+                                      <input class="form-control" name="website" id="hg" maxlength="100" type="url" value="<%= bot.website %>"></input>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label for="wh">Vote Wehbook URL</label>
+                                    <input class="form-control" name="wh" id="wh" type="url" value="<%= bot.wh %>"></input>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                    <label for="dwh" >Discord Wehbook URL</label>
+                                    <input name="dwh" class="form-control" id="dwh" type="url" value="<%= bot.dwh %>" ></input>
+                                    </div>
+  <input id="v" style="display:none" value="<%= bot.vanity %>"></input>
+  
+  <% if(bot.certified == true) { %>
+  
+<label for="vanity">Vanity URL</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon3">https://b-o-d.cf/bots/</span>
+  </div>
+  <input type="text" onchange="gt('<%= bot.id%>')" name="vanity" class="form-control" value="<%= bot.vanity %>" id="vanity" aria-describedby="basic-addon3" minlength="3">
+
+  <div id="not" class="form-text" ></div></div>
+  <div onclick="get('<%= bot.id %>')" id="hj" class="btn btn-info btn-sm">check</div>
+  <br>
+  <br>
+  
+
+                           <% } %>       
+  
+            
+  <center> <button class="btn btn-success" id="btn" onclick="got('<%= bot.id %>')">Submit</button></center>
+          
+    </form>
+
+</div>
+  <footer>
+<%- include("../parts/footer.ejs") %>
+<footer>
+  <script>
+    window.onload = function () {
+      document. getElementById("body"). style. display = "block";
+  $("#load").hide();
+   let values = document. getElementById("tzt").innerHTML;
+    element = document.getElementById('tag');
+
+for (var i = 0; i < element.options.length; i++) {
+    element.options[i].selected = values.indexOf(element.options[i].value) >= 0;
+}
+
+    
+    };
+    
+
+    function get(m) {
+      let v = document.getElementById("v").value;
+      
+      
+      let vt = document. getElementById("vanity"). value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    
+    if (this.readyState == 4 && this.status == 200) {
+    
+    let b = document.getElementById("not");
+      if(this.responseText === "exists" && vt !== v) {
+      
+        
+        b. setAttribute("style","color:red;font-size:12px")
+        b. innerHTML = vt + " is not available";
+  
+      } ;
+      if(this. responseText === "available" || vt === v) {
+        b. setAttribute("style","color:#00ff00;font-size:12px");
+        b. innerHTML = vt + " is available";
+      };
+      if(this.responseText === "short") {
+        b. setAttribute("style","color:red;font-size:12px");
+        b. innerHTML = "";
+      };
+      
+  
+    }
+  };
+  xhttp.open("POST", `/bots/${m}/vanity?q=${vt}`, true);
+  xhttp.send();
+  
+}
+    
+    
+
+  </script>

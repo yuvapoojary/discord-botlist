@@ -1,0 +1,115 @@
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+
+
+<style>
+  
+body {
+  font-family: "Lato", sans-serif;
+  background-color:#2a2d32;
+}
+  
+
+.sidenav {
+  border:solid #636363;
+  border-width: 1px 1px;
+  height: 75%;
+  width: 220px;
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  left: 0;
+  background-color: #2e3136;
+  overflow-x: hidden;
+  padding-top: 60px;
+}
+
+   .tablink {
+     
+  padding: 5px 6px 6px 16px;
+     padding-left:28px;
+  text-decoration: none;
+  font-size: 17px;
+  color: #636363;
+  display: block;
+  }
+
+.tablink:hover {
+  color: #f1f1f1;
+  }
+  .docs {
+  
+    border: solid #636363;
+    border-width:0 0 1px 0;
+    padding: 4px;
+  }
+  
+
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+h2{
+  padding-left: 10px;
+  font-size:20px;
+  color: white !important;
+  }
+  .cont {
+  }
+</style>
+  
+
+
+
+
+
+<div class="sidenav">
+  <div class="docs">
+  <h2
+class="h2">Documentation</h2>
+  <a class=" tablink" onclick="openLink(event, 'info')">Info</a>
+  <a class="tablink" onclick="openLink(event, 'token')">Credentials</a>
+  </div>
+  <div class="docs">
+    <h2>Tools</h2>
+  <a class="tablink" onclick="openLink(event, 'js')">JavaScript</a>
+  <a class="tablink" onclick="openLink(event, 'python')">Python</a>
+  </div>
+<div class="docs">
+  <h2>Resources</h2>
+  <a class=" tablink" onclick="openLink(event, 'widget')">Widget</a>
+  <a class=" tablink" onclick="openLink(event, 'badge')">Badge</a>
+  </div>
+</div>
+
+
+
+
+  <div id="info" class="cont city w3-animate-zoom" style="display:none">
+    <%- include("./JavaScript") %>
+  </div>
+
+</div>
+
+
+
+  
+
+<script>
+function openLink(evt, animName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace("", "");
+  }
+  document.getElementById(animName).style.display = "block";
+  evt.currentTarget.className += "";
+}
+  </script>
+    

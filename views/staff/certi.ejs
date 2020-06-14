@@ -1,0 +1,46 @@
+<%- include("../parts/header.ejs") %>
+<body style="background-color:black">
+<div class="page-title">CERTIFICATION</div>
+  <br>
+  <br>
+ <div class="bo">
+  
+    <div class="hg">Following requirements are missing:</div>
+    
+   <div class="tf">
+  <% dat.map(m => { %>
+   <div style="padding:5px;color: white;"><a style="color:red; font-size:20px;padding-top:5px;">⏺️</a> <%= m %></div>
+     <%})%>
+             </div>
+  </div>
+
+</body>
+<style>
+  .hg {
+    text-decoration: underline;
+    padding-left:18%;
+    
+    font-size:45px;
+    color:red;
+  }
+  .tf {
+    padding-left:20%;
+    font-size:34px;
+    padding-top:9px;
+    
+  }
+  @media only screen and (max-width:600px) and (orientation: portrait) {
+    .hg {
+      font-size:17px;
+      padding-left: 9%;
+    }
+    .tf {
+      font-size:14px;
+      padding-left:10%;
+      padding-top:5px;
+    }
+  }
+</style>
+<%- include("../parts/footer.ejs") %>
+
+

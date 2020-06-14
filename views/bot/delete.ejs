@@ -1,0 +1,56 @@
+<%- include("../parts/header.ejs") %>
+
+<style>
+.ddd {
+  align:center;
+  text-align:center;
+  font-size:40px;
+  color: #70c7c1;
+  font-weight:200px;
+  
+  }
+  
+.error {
+  position: relative;
+
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px
+}
+  @media only screen  and (max-width:600px) {
+    .ddd {
+      font-size:15px;
+    }
+    .error {
+      font-size:12px;
+    }
+  }
+</style>
+  <div class="box">
+<form method="POST">
+
+  
+  
+  <div class="container is-fluid">
+    Are sure want to delete bot <code><%= botn%> </code> ?
+      <center>
+        
+        <button type="submit" class="btn btn-danger">Delete</button>
+        
+        </center>
+    </form>
+  </div>
+
+
+    </div>
+<%- include("../parts/footer.ejs") %>
+
+
+
+
+

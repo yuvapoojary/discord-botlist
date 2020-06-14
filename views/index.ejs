@@ -1,0 +1,76 @@
+
+<%- include("./parts/header") %>
+
+<body>
+  <style>
+    .hdm {
+      font-weight:bold;
+      color:#434f81;
+      font-size:21px;
+      align:center;
+      text-align:center;
+      text-decoration: underline;
+    }
+  </style>
+  <div class="intro">
+  </div>
+  <% 
+function order(key, order = 'asc') {
+  return function innerSort(a, b) {
+    if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+      // property doesn't exist on either object
+      return 0;
+    }
+
+    const varA = (typeof a[key] === 'string')
+      ? a[key].toUpperCase() : a[key];
+    const varB = (typeof b[key] === 'string')
+      ? b[key].toUpperCase() : b[key];
+
+    let comparison = 0;
+    if (varA > varB) {
+      comparison = 1;
+    } else if (varA < varB) {
+      comparison = -1;
+    }
+    return (
+      (order === 'desc') ? (comparison * -1) : comparison
+    );
+  };
+} %>
+  
+  <%let vt = bot.sort(order("votes","desc")).slice(0,5);
+    let server = bot.sort(order("server_count","desc")).slice(0,5);
+    let cert = bot.filter(g => g.certified == true).sort(order("server_count","desc")).slice(0,5);
+  %>
+  
+  <div class="hdm">Top voted bots </div>
+  <%- include("./parts/card",{dat: vt,_client}) %>
+  <% if(promoted.length >= 1) { %>
+  <div class="hdm">Promoted Bots</div>
+  <%- include("./parts/card",{dat:promoted,_client}); %>
+  <% } %>
+  <div class="hdm">Top popular bots</div>
+  <%- include("./parts/card",{dat:server,_client}) %>
+  <% if(cert.length >= 1) { %>
+  <div class="hdm">Top certified bots</div>
+  <%- include("./parts/card",{dat:cert,_client}) %>
+  <% }; %>
+  
+  <br>
+  <center>
+    <div class=bx-t>Suggested Tags</div>
+  <div class="justify-content-center  bx">
+    
+    <div class="">
+   <% tags.map(tag => { %>
+    <button onclick="window.location.href= '/bots?q=<%= tag %>'" class="btn btn-outline-primary btn-sm bgi"><%=tag %></button>
+    <% }) %>
+    </div>
+  </div>
+  </center>
+  <br>
+  
+  <center><button onclick="window.location.href = '/bots'" class="btn btn-success">Explore more</button></center>
+  
+  <%- include("./parts/footer.ejs") %>

@@ -1,0 +1,50 @@
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
+    </head>
+
+    <body>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title inline">
+                    <img src="gg" class="circle bot-image inline">
+                    Color
+                    <% if (true) { %>
+                    <div class="card-server-count chip lime lighten-2 inline">
+                        1100 servers</div>
+                    <% } %>
+                </span>
+                <p class="bot-card-desc">
+                    A simple bot<br></p>
+                <hr>
+                <p style="text-align: center;"><b>
+                        IMM DEF4ULT</b> made this bot.<br>learn more @ botlistuniverse.ga</p>
+            </div>
+        </div>
+    </body>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .card,
+        body {
+            background: #<%=colors.background %>;
+            color: #<%=colors.text %>;
+        }
+
+        .bot-image {
+            width: 45vh;
+            margin-left: -5vh;
+            margin-top: -15vh;
+        }
+
+        .inline {
+            display: inline-block;
+        }
+    </style>
+</html>

@@ -1,0 +1,23 @@
+<%- include("../parts/header.ejs") %>
+<br>
+    <div class="page-title">QUEUE</div>
+
+      
+   <%  if(dat. length == 0) { %>
+<div class="box">
+  <center><img class="bh" src="https://cdn.discordapp.com/attachments/629965788488400909/683641760257277985/IMG_20200301_171756.jpg"></center>
+  
+      <h3 class="mx-auto" style="color: white; text-align:center">No bots are in queue.</h3>
+</div>
+      <% } else { %>
+<div class="bot" id="bot">
+    
+      <%-include("../parts/card.ejs",{dat,search:true}) %>
+</div>
+      </div>
+      <% } %>
+    </div>
+
+  
+
+<%- include('../parts/footer.ejs') %>

@@ -1,0 +1,126 @@
+
+<%- include ("./parts/header") %>
+
+    <style>
+      .form-control,.input-group,input{
+        width:75vw !important;
+        
+        align:center;
+      }
+      @media only screen and (min-width:600px) {
+        .form-control,.input-group,input {
+          
+          width:50vw !important;
+        }
+      }
+</style>
+
+
+  
+    <br>
+<center>
+	<div class="form-inline justify-content-center">
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Search a bot.." id="q" required>
+    <div class="input-group-append">
+      <button class="btn btn-secondary" id="btn" type="button" onclick="search()">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+    </div>
+    </center>
+    
+    <% if(students) { %>
+
+      <% if(query != "") { %>
+<br>
+      <small style="position: relative; left:20px" class="text-muted"><i class="fa fa-search"> </i> Found <%= size%> bots</small>
+      <% } %>
+  
+		
+				<%- include("./parts/card",{dat: students}) %>
+			
+		<br>
+<center>
+  <% let q; %>
+  <% if(query != "") { %>
+   <%  q = `?q=${query}&`; %>
+ <% } else { %>
+  <%   q = `?` %>
+ <% }; %>
+<% if( pageCount > 1) { %>
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+    <%  if(currentPage > 1) { %>
+      <a class="page-link" href="/bots<%= q %>page=1" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+      <% } %>
+    </li>
+    <% var i = 1; %>
+   <% if(currentPage > 5) {
+    i = +currentPage - 4;
+    }; %>
+    <% if(i != 1) { %>
+    
+    <li class="page-item"><a class="page-link" href="/bots<%= q %>page=<%= i-1 %>">..</a></li>
+    <% };
+    for(i; i<= pageCount;i++) { %>
+   <% if(currentPage == i) { %>
+    <li class="page-item active" disabled>
+      <a class="page-link" href="#gh"><%= i %><span class="sr-only">(random)</span></a></li>
+    <% } else {   %>
+    <li class="page-item"><a class="page-link" href="/bots<%= q %>page=<%= i %>"><%= i %></a></li>
+    <% } %>
+    <% if(i == (+currentPage + 4)) { %>
+      
+    <li class="page-item" disabled><a class="page-link" href="/bots<%= q%>page=<%= i+1 %>">..</a></li>
+    <% break } } %>
+    <% if(currentPage != pageCount) { %>
+    <li class="page-item">
+      <a class="page-link" href="/bots<%= q%>page=<%= pageCount %>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <% } %>
+  </ul>
+</nav>
+      <% } %>
+  
+      </center>
+      </div>
+	</div>
+<% } else { %>
+
+<div class="box">
+  <h3 class="justify-content-center">We are sorry , couldn't find that bot...</h3>
+  <br>
+  <div class="justify-content-center"><button class="btn btn-success" onclick="window.location.href='/bots'">Explore bots</button></div>
+  
+</div>
+<% } %>
+  
+      
+  <script>
+    const btn = document. getElementById("q");
+    btn. addEventListener("keyup",function(event) {
+      if(event. keyCode === 13) {
+        event. preventDefault()
+      document. getElementById("btn").click()
+      };
+    });
+   function search () {
+     let q = document.getElementById("q").value;
+     if(q == "") {
+       return false;
+     } else {
+       window.location.href = `/bots?q=${q}`;
+     }
+   };
+</script>
+
+<script src="https://use.fontawesome.com/097d169966.js"></script>
+    
+  
+</html>

@@ -1,0 +1,60 @@
+
+  <% const doc = bot; %>
+  <head>
+      
+	<meta name="twitter:card" value="summary">
+	<meta name="twitter:title" content="<%= bot. name%>">
+	<meta name="twitter:description" content="Vote for <%= bot.name %> on Bots Of Discord.">
+	<meta name="twitter:image" content="https://images.discordapp.net/avatars/<%= bot.id%>/<%= bot.avatar%>.png?size=512">
+
+	<meta property="og:site_name" value="BOTS OF DISCORD">
+	<meta property="og:title" content="<%= bot.name%>" />
+	<meta property="og:url" content="https://b-o-d.cf/" />
+	<meta property="og:description" content="Vote for <%= bot.name%> on Bots Of Discord">
+	<meta property="og:image" content="https://images.discordapp.net/avatars/<%= bot.id %>/<%= bot.avatar %>.png?size=512" />
+  <link rel="stylesheet" href="/custom.css">
+  </head>
+  <%- include("../parts/header") %>
+  <div class="box" style="background-color: white">
+    <center>
+    <div class="pics"><img style="height:200px;width:200px;border:solid black;border-width:1px"  src="https://cdn.discordapp.com/avatars/<%= doc.id %>/<%= doc.avatar%>" alt="Loading"></div>
+    </center>
+    <br>
+    <hr>
+    
+    <div style="color:black; text-align: center" id="txt"></div>
+    <center><div class="btn btn-success" id="bt" onclick="gg()">VOTE</div></center>
+    <br>
+    <center>
+    <button onclick="window.location.href = '/bots/<%= doc.id %>'" class="btn btn-primary">Back to <%=doc.name%></button>
+    </center>
+    
+  </div>
+  
+<script>
+function gg() {
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+ let txt = document.getElementById("txt");
+      let bt = document.getElementById("bt");
+    
+      if(this.responseText === "100") {
+        bt. style. display = "none";
+  
+        txt. innerHTML = "♦️ You can vote only once 24 hours. "
+      };
+      if(this. responseText === "50") {
+        bt. style. display = "none";
+        document. getElementById("txt").innerHTML = "👍 Successfully upvoted";
+      };
+    }
+  };
+  xhttp.open("POST", "vote", true);
+  xhttp.send();
+}
+  </script>
+  
+  
+

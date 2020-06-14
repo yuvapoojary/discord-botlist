@@ -1,0 +1,47 @@
+{
+  "token": "NjQ0Mzc1MTE1MjE5MzM3MjE2.XmZwWw.SDhvhMYAABwBTn8gRZxw15v0_4E",
+  "prefix": ".",
+  "guildID": "642339855313141761",
+  "clientID": "644375115219337216",
+  "clientSecret": "H9pVUOVcY19xbaONoqL1nYY0r9FsZTPO",
+  "callbackURL": "https://www.b-o-d.cf/callback",
+  "secret": "hhhfddgh",
+  "useragent": "BOD",
+  "channels": {
+    "weblog": "642605092515872798",
+    "verification_log": "",
+    "report": "642369676881690624"
+  },
+  "roles": {
+    "owner": [
+      "572327928646598667",
+      "360363051792203779",
+      "686911128504107071"
+
+    ],
+    "admin": [
+      "576043103476121600",
+      "572327928646598667",
+      "360363051792203779",
+      "686911128504107071",
+      
+      "685506829228179515"
+    ],
+    "mod": [
+      "576043103476121600",
+      "685506829228179515",
+      "572327928646598667",
+      "360363051792203779",
+      "686911128504107071",
+     
+      "681344320539721748"
+    ],
+    "botlist": "642536498394300416",
+    "bot_developer": "642681426873024542",
+    "certified_developer": "643127942033047580",
+    "certified_bot": "645874941832462336"
+  },
+  "emojis": {
+    "verified": ""
+  }
+}

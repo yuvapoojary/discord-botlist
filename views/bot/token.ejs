@@ -1,0 +1,141 @@
+<%- include("../parts/header.ejs") %>
+<link rel="stylesheet" href="/style.css" />
+<style>
+  .row {
+    position: relative;
+    top:35px
+  }
+.ddd {
+  align:center;
+  text-align:center;
+  font-size:40px;
+  color: #70c7c1;
+  font-weight:200px;
+  
+  }
+  .close {
+    float: right;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  .btt {
+    max-width:50vw;
+    align-items:center;
+  }
+  .bt_cont {
+  }
+  @media only screen and (max-width:600px) {
+    
+    
+    
+  }
+   
+  .bo8x {
+    margin:20px 25vw;
+    
+}
+  .tbot {
+    float: left;
+    display: inline-block;
+  background-color: #2196F3;
+    margin:10px 10px;
+    padding:20px;
+    height:180px;
+    width:180px;
+    border: solid red;
+    border-width:1px;
+  }
+  .blur {
+    
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+  }
+  .imgr {
+    height:60px;
+    width:60px;
+    display: inline-block;
+  }
+.tn {
+  color: white;
+  font-weight:bold;
+  }
+  .token {
+    
+    border:solid red;
+    border-width:1px;
+  }
+  
+  
+.error {
+  position: relative;
+
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px
+}
+  @media only screen  and (max-width:600px) {
+    .ddd {
+      font-size:15px;
+    }
+    .error {
+      font-size:12px;
+    }
+  }
+</style>
+<div class="page-title">API TOKEN</div>
+
+<div class="row justify-content-center">
+  
+  <div class="card-group">
+<% arr.map(bot => { %>
+    
+  <div class="card  justify-content-center" style="width:215px;height:220px;margin-left:10px;" id="bi">
+    <div class="card-header"><%= bot.name %></div>
+    <div class="card-body">
+      <center>
+    <img class="imgr" src="https://cdn.discordapp.com/avatars/<%= bot.id%>/<%= bot.avatar %>"> </center></div>
+    
+      <p><input type="password"  style="text-align:center" class="form-control form-control-sm" id="<%= bot.id %>" name="<%= bot.id %>" value="<%= bot.token %>"></input></p>
+    <div class="card-footer justify-content-center">
+      <a class="btn btn-warning btn-sm" id="g<%= bot.id %>" onclick="show('<%= bot.id %>')">Show</a> &nbsp; &nbsp; <a href="/api/token/reset?id=<%=bot.id %>" style="color: black" class="btn btn-warning btn-sm">Reset</a>
+      </div>
+  
+  </div>
+  <% }) %>  
+  
+</div>
+</div>
+
+
+<script>
+  function show(id) {
+    let io = document.getElementById("g"+id);
+    let doc = document.getElementById(id);
+    if(doc.type === "password") {
+io.innerHTML = 'Hide';
+    doc.type = "text";
+    } else {
+    
+      doc.type = "password";
+      io.innerHTML = "Show";
+    } 
+  };
+  
+</script>
+
+
+
+<%- include("../parts/footer.ejs") %>
+
+
+
+
+

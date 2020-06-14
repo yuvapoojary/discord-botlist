@@ -1,0 +1,73 @@
+<%- include("./parts/header") %>
+<% if(true) { %>
+<body style="background-color:white !important">
+<link rel="stylesheet" href="/style.css"/>
+<div class="box" style="background-color:#505050" id="contn">
+  
+    <center>
+    <img class="pi" src="https://cdn.discordapp.com/avatars/<%= profile.id%>/<%= profile.avatar%>.png?size=512">
+  
+  <br>
+  <center><% if(pf.certified && pf.certified == true) { %><img style="height:22px;width:22px" src="/Certificate_seal-512.png"><% } %></center>
+  <div class="pn"><%= profile.username%>#<%= profile.discriminator %></div>
+  
+   <hr>
+      <div><%= pf.desc%></div>
+      <br>
+     <% if(pf.github != ""){ %> <a href="<%= pf.github %>" class="btn btn-success">Github</a><% }; if(pf. website != "") {%> <a href="<%=pf.website %>" class="btn btn-success">Website</a> <% }; if(user.id == profile.id ) {%>  <button class="btn btn-danger"  id="open">Edit</button><% } %>
+      
+    </center>
+
+</div>
+<div class="mod" id="box" name="box">
+
+    
+<form method="post" class="modal-contn" name="edit" id="edit">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Description</label>
+    <input type="text" name="desc" maxlength="65" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="<%= pf.desc%>">
+    
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Github</label>
+    <input type="url" class="form-control" name="github" id="exampleInputPassword1" value="<%= pf.github%>">
+  </div>
+  <div class="form-group">
+    <label for="website">Website</label>
+    <input type="url" name="website" class="form-control" value="<%= pf.website %>" id="website">
+    
+  </div>
+  <center>
+  <button type="button" class="btn btn-danger" id="close">Cancel</button>
+  
+  <button type="submit" class="btn btn-success" >Save</button>
+  </center>
+</form>
+</div>
+<% } %>
+<hr>
+<div class="pn" style="color:#545F8C; padding-left:10%"><%= profile.username%>'s Bots</div>
+  <div style="padding-left:10%;font-size:12px"><%= profile.username%>'s bots that are currently listed on BOD. </div>
+<div id="bot">
+<%- include("./parts/card.ejs",{user,dat,search:false}) %>
+</div>
+  
+  
+
+
+<script>
+  let box = document.getElementById("box");
+  document. getElementById("open").onclick = function() {
+    window. location. href = "#box"
+    box.style.display = "block";
+    document.getElementById("contn").filter = "blur(8px)";
+  };
+  document.getElementById("close").onclick = function() {
+    box. style. display = "none";
+  }
+
+</script>
+
+
+
+<%- include("./parts/footer") %>
