@@ -18,7 +18,7 @@
     "verification_log": "",
     "report": "reports channel id"
   },
-  "roles": {   // website is id based permission system
+  "roles": {   
     "owner": [
       "572327928646598667",
       "360363051792203779",
