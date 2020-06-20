@@ -1,24 +1,24 @@
 {
   "token": "",
   "prefix": ".",
-  "guildID": "642339855313141761",
-  "clientID": "644375115219337216",
-  "clientSecret": "",
-  "callbackURL": "https://www.b-o-d.cf/callback",
+  "guildID": "Main guild id",
+  "clientID": "From discord application",
+  "clientSecret": "From discord application",
+  "callbackURL": "Callback URL",
   "secret": "hhhfddgh",
   "useragent": "BOD",
 
 
-  "algolia": {
+  "algolia": {    // For search query go to https://algolia.com and register.
     "applicationId":"",
     "apiKey":""
     },
   "channels": {
-    "weblog": "642605092515872798",
+    "weblog": "log channel id",
     "verification_log": "",
-    "report": "642369676881690624"
+    "report": "reports channel id"
   },
-  "roles": {
+  "roles": {   // website is id based permission system
     "owner": [
       "572327928646598667",
       "360363051792203779",
@@ -42,10 +42,10 @@
      
       "681344320539721748"
     ],
-    "botlist": "642536498394300416",
-    "bot_developer": "642681426873024542",
-    "certified_developer": "643127942033047580",
-    "certified_bot": "645874941832462336"
+    "botlist": "Role id that is given to approved bot",
+    "bot_developer": "Bot developer role id",
+    "certified_developer": "Role id",
+    "certified_bot": "Role id"
   },
   "emojis": {
     "verified": ""
