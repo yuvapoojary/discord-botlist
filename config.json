@@ -9,9 +9,9 @@
   "useragent": "BOD",
 
 
-  "algolia": {    // For search query go to https://algolia.com and register.
-    "applicationId":"",
-    "apiKey":""
+  "algolia": {    
+    "applicationId":"algolia.com go and register",
+    "apiKey":"key from algolia"
     },
   "channels": {
     "weblog": "log channel id",
