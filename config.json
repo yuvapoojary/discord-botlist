@@ -1,4 +1,5 @@
 {
+  "port": 3000,
   "token": "",
   "prefix": ".",
   "guildID": "Main guild id",
