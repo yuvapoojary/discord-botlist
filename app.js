@@ -190,7 +190,7 @@ client.once("ready", () => {
     next();
   });
   app.use("/", require("./routes/index"));
-  app.use("/api", require("./routes/api.js"));
+  app.use("/api", require("./routes/API.js"));
   app.use("/user", require("./routes/user"));
   app.use("/bots", require("./routes/bots"));
   app.use("/bot", client.c.auth, require("./routes/bot"));
