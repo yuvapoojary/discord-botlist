@@ -220,7 +220,7 @@ client.once("ready", () => {
   ///   //// ///// /////
 
   const { error, owner } = process.env;
-
+/**
   process.on("uncaughtException", err => {
     console.error(err);
     client.channels.get(error).send(`<@${owner}> There was an uncaught error, ${err}`);
@@ -230,6 +230,7 @@ client.once("ready", () => {
   process.on("unhandledRejection", async (reason, promise) => {
     await client.channels.get(error).send(`<@${owner}> Error at: ${promise} \n ${reason}`);
   });
+**/
 });
 
 
