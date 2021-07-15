@@ -25,6 +25,7 @@ router.get('/', async(req, res, next) => {
   
 });
 
+router.use('/', require('./Auth'));
 router.use('/bots', require('./Bots'));
 
 module.exports = router;

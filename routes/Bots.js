@@ -17,7 +17,7 @@ router.get('/', async(req, res, next) => {
   .lean();
   
   const [count, data] = await Promise.all([
-    prompise.countDocuments(),
+    promise.countDocuments(),
     promise.limit(limit)
   ]);
   
@@ -33,7 +33,5 @@ router.get('/', async(req, res, next) => {
   });
   
 });
-
-router.get('/:id')
 
 module.exports = router;
