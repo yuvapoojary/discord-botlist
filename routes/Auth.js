@@ -4,7 +4,9 @@ const User = require('../models/User');
 
 router.get('/login', passport.authenticate('discord'));
 
-router.get('/callback', passport.authenticate('discord'), (req, res, next) => {
+router.get('/callback', passport.authenticate('discord', {
+  failureRedirect: '/'
+}), (req, res, next) => {
   
   const user = req.user;
   
