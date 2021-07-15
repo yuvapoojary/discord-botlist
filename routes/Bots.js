@@ -11,14 +11,15 @@ router.get('/', async(req, res, next) => {
   };
   if(req.query.q) query.name = new RegExp(req.query.q, 'i');
   
-  const promise = Bot.find(query)
+  const dataPromise = Bot.find(query)
   .sort({ name: 1 })
   .skip(offset)
   .lean();
+  const countPromise = dataPromise;
   
   const [count, data] = await Promise.all([
-    promise.countDocuments(),
-    promise.limit(limit)
+    countPromise.countDocuments(),
+    dataPromise.limit(limit)
   ]);
   
   const totalPages = Math.ceil(count / limit);
