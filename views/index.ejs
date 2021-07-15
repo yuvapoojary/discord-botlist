@@ -23,7 +23,7 @@
   <% } %>
   <div class="hdm">Top popular bots</div>
   <%- include("./parts/card",{data: popular,_client}) %>
-  <% if(cert.length >= 1) { %>
+  <% if(certified.length >= 1) { %>
   <div class="hdm">Top certified bots</div>
   <%- include("./parts/card",{data: certified,_client}) %>
   <% }; %>
