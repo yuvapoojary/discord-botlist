@@ -1,13 +1,12 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const path = require("path");
+const config = require("./config.js");
+
 const client = new Discord.Client();
-const config = require("./config.json");
+
 client.config = config;
 client.commands = new Discord.Collection();
-const h = require("./modules/database");
-const db = h.db;
-const {} = require("./modules/user");
 
 // load events here
 fs.readdir(`${process.cwd()}/discordbot/events/`, (err, files) => {
@@ -36,7 +35,8 @@ fs.readdir(`${process.cwd()}/discordbot/commands`, (err, files) => {
 
 // Logging in
 
-client.login(config.token);
-module.exports = { db, client };
+client.login(config.bot.token);
+
+module.exports = client;
 
 

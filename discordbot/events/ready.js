@@ -1,6 +1,8 @@
 
 module.exports = client => {
-    console.log(`Connected to ${client.guilds.size} guilds`)
-    client.user.setPresence({ game: { name: `BOTS OF DISCORD`, type: 3 } });  
+  
+    console.log(`Connected to ${client.guilds.cache.size} guilds`)
+    client.user.setPresence({ game: client.config.bot.presence });  
+    
 };
   

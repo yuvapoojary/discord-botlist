@@ -5,7 +5,7 @@
 <body style="background-color:whitesmoke !important">
   
   
-    <% dat.map(bot => {%>
+    <% data.map(bot => {%>
     
     
     <% 
@@ -16,8 +16,8 @@
       servers = bot.server_count  + "  servers"
     };
     let status;
-    if(_client.users.has(bot.id)) {
-       status = _client.users.get(bot.id).presence.status;
+    if(_client.users.cache.has(bot.id)) {
+       status = _client.users.cache.get(bot.id).presence.status;
     } else {
       status = "offline"
     };
@@ -98,7 +98,7 @@
               
             }
           </style>
-        <a class="g btn ini"  href='/bot/<%= bot.id %>/invite'>INVITE</a>
+        <a class="g btn ini"  href='/bots/<%= bot.id %>/invite'>INVITE</a>
           <a class="g btn v"  href='/bots/<%= bot.id %>'>VIEW</a>
           </div>
         

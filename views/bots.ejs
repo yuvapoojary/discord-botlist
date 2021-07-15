@@ -31,29 +31,23 @@
     </div>
     </center>
     
-    <% if(students) { %>
+    <% if(!totalCount) { %>
 
-      <% if(query != "") { %>
+      <% if(q) { %>
 <br>
-      <small style="position: relative; left:20px" class="text-muted"><i class="fa fa-search"> </i> Found <%= size%> bots</small>
+      <small style="position: relative; left:20px" class="text-muted"><i class="fa fa-search"> </i> Found <%= totalCount %> bots</small>
       <% } %>
   
 		
-				<%- include("./parts/card",{dat: students}) %>
+				<%- include("./parts/card",{data: data }) %>
 			
 		<br>
 <center>
-  <% let q; %>
-  <% if(query != "") { %>
-   <%  q = `?q=${query}&`; %>
- <% } else { %>
-  <%   q = `?` %>
- <% }; %>
-<% if( pageCount > 1) { %>
+<% if( totalPages > 1) { %>
   <ul class="pagination justify-content-center">
     <li class="page-item">
     <%  if(currentPage > 1) { %>
-      <a class="page-link" href="/bots<%= q %>page=1" aria-label="Previous">
+      <a class="page-link" href="/bots?page<%= currentPage - 1 %>&q=<%= q%>" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
       <% } %>
@@ -64,22 +58,22 @@
     }; %>
     <% if(i != 1) { %>
     
-    <li class="page-item"><a class="page-link" href="/bots<%= q %>page=<%= i-1 %>">..</a></li>
+    <li class="page-item"><a class="page-link" href="/bots?page<%= i-1 %>&q=<%= q %>">..</a></li>
     <% };
-    for(i; i<= pageCount;i++) { %>
+    for(i; i<= totalPages;i++) { %>
    <% if(currentPage == i) { %>
     <li class="page-item active" disabled>
       <a class="page-link" href="#gh"><%= i %><span class="sr-only">(random)</span></a></li>
     <% } else {   %>
-    <li class="page-item"><a class="page-link" href="/bots<%= q %>page=<%= i %>"><%= i %></a></li>
+    <li class="page-item"><a class="page-link" href="/bots?page<%= i %>&q=<%= q%>"><%= i %></a></li>
     <% } %>
     <% if(i == (+currentPage + 4)) { %>
       
-    <li class="page-item" disabled><a class="page-link" href="/bots<%= q%>page=<%= i+1 %>">..</a></li>
+    <li class="page-item" disabled><a class="page-link" href="/bots?page=<%= i+1 %>&q=<%= q%>">..</a></li>
     <% break } } %>
-    <% if(currentPage != pageCount) { %>
+    <% if(currentPage != totalPages ) { %>
     <li class="page-item">
-      <a class="page-link" href="/bots<%= q%>page=<%= pageCount %>" aria-label="Next">
+      <a class="page-link" href="/bots?page=<%= totalPages %>&q=<%= q%>" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
