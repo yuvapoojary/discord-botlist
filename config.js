@@ -37,10 +37,9 @@ const config = {
 };
 
 const mergeConfig = (data) => {
-  console.log(process.env.bot_token)
   const newConfig = {};
   const keys = Object.keys(data);
-  for (const key in keys) {
+  for (const key of keys) {
     const value = process.env[key];
     newConfig[key] = value || data[key];
   };

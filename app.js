@@ -23,8 +23,6 @@ global.client = client;
 
 const app = express();
 
-console.log(config);
-
 mongoose.connect(config.mongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
