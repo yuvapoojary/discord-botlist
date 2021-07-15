@@ -16,8 +16,8 @@ router.get('/', async(req, res, next) => {
   res.render('index', {
     user: req.user,
     tags,
-    popular,
-    servers,
+    voted,
+    popular: servers,
     certified,
     _client: client
   });
