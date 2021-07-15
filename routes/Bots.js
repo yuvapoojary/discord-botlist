@@ -14,12 +14,16 @@ router.get('/', async(req, res, next) => {
   const dataPromise = Bot.find(query)
   .sort({ name: 1 })
   .skip(offset)
-  .lean();
-  const countPromise = dataPromise;
+  .lean()
+  .limit(limit);
+  const countPromise = Bot.find(query)
+  .skip(offset)
+  .lean()
+  .countDocuments();
   
   const [count, data] = await Promise.all([
-    countPromise.countDocuments(),
-    dataPromise.limit(limit)
+    countPromise,
+    dataPromise
   ]);
   console.log(data);
   const totalPages = Math.ceil(count / limit);
