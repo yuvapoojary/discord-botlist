@@ -25,7 +25,7 @@ router.get('/', async(req, res, next) => {
     countPromise,
     dataPromise
   ]);
-  console.log(data);
+ 
   const totalPages = Math.ceil(count / limit);
   
   res.render('bots', {
