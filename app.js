@@ -1,4 +1,5 @@
-require('dotenv/config');
+require('dotenv').config();
+
 const express = require("express");
 const url = require("url");
 const event = require("events");
@@ -21,6 +22,8 @@ const port = config.port || process.env.PORT;
 global.client = client;
 
 const app = express();
+
+console.log(process.env);
 
 mongoose.connect(config.mongoURL, {
   useNewUrlParser: true,
