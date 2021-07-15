@@ -23,7 +23,7 @@ global.client = client;
 
 const app = express();
 
-console.log(process.env);
+console.log(config);
 
 mongoose.connect(config.mongoURL, {
   useNewUrlParser: true,

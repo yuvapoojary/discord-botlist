@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const config = {
   
   port: 5001,
