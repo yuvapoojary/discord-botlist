@@ -33,7 +33,7 @@ const Bot = new mongoose.Schema({
   
   github: String,
   
-  website: github,
+  website: String,
   
   owner: String,
   
