@@ -22,7 +22,7 @@ global.client = client;
 
 const app = express();
 
-mongoose.connect(config.MONGO_URI, {
+mongoose.connect(config.mongoURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -88,9 +88,9 @@ passport.deserializeUser((obj, done) => {
 passport.use(
   new Strategy(
     {
-      clientID: config.bot.clientId,
-      clientSecret: config.bot.clientSecret,
-      callbackURL: config.bot.callbackURL,
+      clientID: config.bot_clientId,
+      clientSecret: config.bot_clientSecret,
+      callbackURL: config.bot_callbackURL,
       scope: ["identify"]
     },
     (accessToken, refreshToken, profile, done) => {

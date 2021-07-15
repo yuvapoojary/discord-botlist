@@ -6,16 +6,19 @@ const config = {
   
   mongoURL: '',
   
-  bot: {
-    token: '',
-    prefix: '.',
-    clientId: '',
-    clientSecret: '',
-    callbackURL: '',
-    presence: {
-      name: 'Bot list made by DEF4ULT',
-      type: 3
-    }
+  bot_token: '',
+  
+  bot_prefix: '.',
+  
+  bot_clientId: '',
+  
+  bot_clientSecret: '',
+  
+  bot_callbackURL: '',
+  
+  bot_presence: {
+    name: 'discord bots',
+    type: 3
   },
   
   guildId: '',

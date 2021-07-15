@@ -35,7 +35,7 @@ fs.readdir(`${process.cwd()}/discordbot/commands`, (err, files) => {
 
 // Logging in
 
-client.login(config.bot.token);
+client.login(config.bot_token);
 
 module.exports = client;
 
