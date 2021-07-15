@@ -19,6 +19,7 @@ router.get('/', async(req, res, next) => {
     voted,
     popular: servers,
     certified,
+    promoted: [],
     _client: client
   });
   
