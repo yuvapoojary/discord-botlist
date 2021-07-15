@@ -85,4 +85,4 @@ const Bot = new mongoose.Schema({
   
 });
 
-mongoose.model('Bot', Bot);
+module.exports = mongoose.model('Bot', Bot);
