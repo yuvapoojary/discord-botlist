@@ -18,7 +18,7 @@ const minifyHTML = require("express-minify-html");
 const helmet = require('helmet');
 const client = require('./bot');
 
-const port = config.port || process.env.PORT;
+const port = rocess.env.PORT || config.port;
 global.client = client;
 
 const app = express();
