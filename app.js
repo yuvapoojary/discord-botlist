@@ -67,26 +67,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
-
-passport.use(
-  new Strategy(
-    {
-      clientID: config.bot_clientId,
-      clientSecret: config.bot_clientSecret,
-      callbackURL: config.bot_callbackURL,
-      scope: ["identify"]
-    },
-    (accessToken, refreshToken, profile, done) => {
-      process.nextTick(() => done(null, profile));
-    }
-  )
-);
 
 app.use("/", require("./routes"));
 

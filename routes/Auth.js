@@ -2,6 +2,27 @@ const router = require('express').Router();
 const passport = require('passport');
 const User = require('../models/User');
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+passport.use(
+  new Strategy(
+    {
+      clientID: config.bot_clientId,
+      clientSecret: config.bot_clientSecret,
+      callbackURL: config.bot_callbackURL,
+      scope: ["identify"]
+    },
+    (accessToken, refreshToken, profile, done) => {
+      process.nextTick(() => done(null, profile));
+    }
+  )
+);
+
 router.get('/login', passport.authenticate('discord'));
 
 router.get('/callback', passport.authenticate('discord', {
