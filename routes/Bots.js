@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const Bot = require('../models/Bot');
+const auth = require('../modules/auth');
+const { tags, libs } = require('../modules/constants');
 
 router.get('/', async(req, res, next) => {
   
@@ -37,6 +39,18 @@ router.get('/', async(req, res, next) => {
     q: req.query.q  || null
   });
   
+});
+
+
+router.post('/', auth.serverCheck(), (req, res, next) => {
+  res.send(200);
+});
+
+router.get('/add', auth.serverCheck(), (req, res, next) => {
+  res.render('bot/add', {
+    libs,
+    tags
+  });
 });
 
 module.exports = router;

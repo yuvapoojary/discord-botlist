@@ -20,7 +20,7 @@ const perm = (level) => (req, res, next) => {
 };
 
 const serverCheck = (req, res, next) => {
-  perm(req, res, function() {
+  perm()(req, res, function() {
     if(client.users.cache.has(req.user.id)) return next();
     res.json({
       message: 'You must be in discord server to add bot'
