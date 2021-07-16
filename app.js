@@ -37,6 +37,7 @@ app.use([
 ]);
 
 app.use((req, res, next) => {
+  if(!req.session || !req.session.user) return next();
   const user = req.session.user;
   res.locals.user = user;
   req.user = user;
