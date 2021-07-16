@@ -17,13 +17,7 @@ const getAccessToken = async (code) => {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      data: {
-        client_id: config.bot_clientId,
-        client_secret: config.bot_clientSecret ,
-        grant_type: 'authorization_code',
-        code,
-        redirect_uri: config.domain + '/callback'
-      }
+      data: `client_id=${config.bot_clientId}&client_secret=${config.bot_clientSecret}&grant_type=authorization_code&code=${code}&redirect_uri=${config.domain + '/callback'}`
     })).data;
 
   } catch (e) {
