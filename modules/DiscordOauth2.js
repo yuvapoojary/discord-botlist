@@ -71,7 +71,7 @@ const getUserGuilds = async (data) => {
 };
 
 
-export const getUserByCode = async(code) => {
+const getUserByCode = async(code) => {
   const data = await getAccessToken(code);
   return getUserInfo(data);
 };
