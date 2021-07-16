@@ -27,6 +27,7 @@ mongoose.set('debug', true);
 
 
 app.set('view engine', 'ejs');
+app.locals.domain = config.domain;
 
 app.use([
   compress(),
