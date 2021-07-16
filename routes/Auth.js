@@ -1,37 +1,21 @@
 const router = require('express').Router();
-const passport = require('passport');
-const Strategy = require('passport-discord').Strategy;
+const Oauth2 = require('../modules/DiscordOauth2');
 const User = require('../models/User');
 const config = require('../config');
+const axios = require('axios');
 
-passport.serializeUser((user, done) => {
-  done(null, user);
+
+
+router.get('/login', (req, res, next) => {
+  res.redirect(Oauth2.getOauthUrl());
 });
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
-});
 
-passport.use(
-  new Strategy(
-    {
-      clientID: config.bot_clientId,
-      clientSecret: config.bot_clientSecret,
-      callbackURL: config.bot_callbackURL,
-      scope: ["identify"]
-    },
-    (accessToken, refreshToken, profile, done) => {
-      process.nextTick(() => done(null, profile));
-    }
-  )
-);
 
-router.get('/login', passport.authenticate('discord'));
-
-router.get('/callback', passport.authenticate('discord', {
-  failureRedirect: '/'
-}), (req, res, next) => {
+router.get('/callback', async (req, res, next) => {
   
-  const user = req.user;
+  const user = await Oauth2.getUserByCode(req.query.code);
+  
+  req.session.user = user;
   
   User.findOne({ id: user.id })
   .then((data) => {
@@ -39,12 +23,12 @@ router.get('/callback', passport.authenticate('discord', {
       data = new User({
         id: user.id,
         name: user.username,
-        tag: user.discriminator,
+        tag: `${user.username}#${user.discriminator}`,
         avatar: user.avatar
       });
     } else {
       data.name = user.username;
-      data.tag = user.discriminator;
+      data.tag = `${user.username}#${user.discriminator}`;
       data.avatar = user.avatar;
     };
     

@@ -1,7 +1,9 @@
 require('dotenv').config();
 
 const config = {
-
+  
+  domain: 'https://bot-list-default.herokuapp.com',
+  
   port: 5001,
 
   secret: 'some string',

@@ -8,8 +8,6 @@ const config = require('./config');
 const flash = require('connect-flash');
 const flashexpress = require('flash-express');
 const session = require('express-session');
-const passport = require("passport");
-const Strategy = require("passport-discord").Strategy;
 const logger = require("morgan");
 const { ensureLoggedIn } = require("connect-ensure-login");
 const compress = require("compression");
@@ -39,7 +37,9 @@ app.use([
 ]);
 
 app.use((req, res, next) => {
-  res.locals.user = req.user;
+  const user = req.session.user;
+  res.locals.user = user;
+  req.user = user;
   next();
 });
 
@@ -63,10 +63,6 @@ app.use(
     extended: true
   })
 );
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 app.use("/", require("./routes"));
 
