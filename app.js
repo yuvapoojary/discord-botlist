@@ -37,6 +37,7 @@ app.use([
 ]);
 
 app.use((req, res, next) => {
+  console.log(req.session)
   const user = req.session && req.session.user;
   res.locals.user = user;
   req.user = user;
