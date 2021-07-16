@@ -5,7 +5,6 @@ const url = require("url");
 const event = require("events");
 const mongoose = require('mongoose');
 const config = require('./config');
-const flash = require('express-flash');
 const session = require('express-session');
 const logger = require("morgan");
 const { ensureLoggedIn } = require("connect-ensure-login");
