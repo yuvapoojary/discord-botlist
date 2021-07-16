@@ -1,6 +1,6 @@
 <%- include('../parts/header.ejs') %>
 <div class="page-title">
-  EDIT BOT
+  EDIT data
 </div>
 <style>
   label a {
@@ -13,29 +13,29 @@
 
 <div class="box">
 
-    <form method="POST" onsubmit="get('<%= bot.id%>')" id="fm">
+    <form method="POST" onsubmit="get('<%= data.id%>')" id="fm">
         <div class="form-group">
           <label for="id">Client ID <a>*</a></label>
           
-                <input class="form-control" id="id" maxlength="40" name="client_id" type="text" value="<%= bot.id %>" readonly>
+                <input class="form-control" id="id" maxlength="40" name="id" type="text" value="<%= data.id %>" readonly>
           
         </div>
         <div class="form-group">
             <label for="prefix">Prefix <a>*</a></label>
             
-                <input class="form-control" id="prefix" name="prefix" maxlength="6" type="text" value="<%= bot. prefix %>" required>
+                <input class="form-control" id="prefix" name="prefix" maxlength="6" type="text" value="<%= data. prefix %>" required>
           
         </div>  
         <div class="form-group">
-                <label for="library">Bot Library <a>*</a> </label>
+                <label for="library">data Library <a>*</a> </label>
                     <select class="form-control" name="library" id="library" required>
-                      <option value="<%= bot.library%>"><%= bot.library %></option>
+                      <option value="<%= data.library%>"><%= data.library %></option>
                       
-     <% libs.filter(g => g != bot.library).map(lib => { %>               <option value="<%=lib %>"><%= lib %></option>
+     <% libs.filter(g => g != data.library).map(lib => { %>               <option value="<%=lib %>"><%= lib %></option>
                       <% }) %>
           </select>
         </div> 
-      <div style="display:none" id="tzt"><%= bot.tags %></div>
+      <div style="display:none" id="tzt"><%= data.tags %></div>
       <div class="form-group">
         <label for="tag">Tags <a>*</a></label>
   
@@ -55,12 +55,12 @@
         <div class="form-group">
                 <label for="invite">Invite URL <a>*</a></label>
               
-                    <input class="form-control" maxlength="400" name="invite" type="url" value="<%=bot.invite%>" id="invite">
+                    <input class="form-control" maxlength="400" name="invite_url" type="url" value="<%=data.invite_url%>" id="invite">
                 
             </div> 
             <div class="form-group">
                     <label for="owners">Additional Owner IDs (Max. 3)</label>
-              <% let own = bot.owners. filter (id => id != user.id) %>
+              <% let own = data.owners. filter (id => id != user.id) %>
                     
                         <input class="form-control" id="owners" name="owners" maxlength="200" type="text" value="<%=own%>">
                   
@@ -68,55 +68,55 @@
                 <div class="form-group">
                         <label for="short_desc">Short Description <a>*</a></label>
                         
-                            <input class="form-control" id="short_desc" name="short_desc" minlength="15" maxlength="50" type="text" value="<%=bot.short_desc %>" required>
+                            <input class="form-control" id="short_desc" name="short_desc" minlength="15" maxlength="50" type="text" value="<%=data.short_desc %>" required>
                         
                 </div>  
                 <div class="form-group">
                   <label for="long_desc">Long Description(Supports markdown) <a>*</a></label>
                       
-                          <textarea minlength="150" class="form-control" id="long_desc" name="long_desc" class="textarea" rows="5" required><%= bot.long_desc %>"</textarea>
+                          <textarea minlength="150" class="form-control" id="long_desc" name="long_desc" class="textarea" rows="5" required><%= data.long_desc %>"</textarea>
                       
                       </div>   
                       <div class="form-group">
                             <label for="gitub">Github URL</label>
                             
-                                <input class="form-control" id="github" maxlength="200" name="github" type="url" value="<%=bot.github %>">
+                                <input class="form-control" id="github" maxlength="200" name="github" type="url" value="<%=data.github %>">
                         
                         </div>  
                         <div class="form-group">
                                 <label for="lag">Support Server</label>
                               
-                                    <input class="form-control" id="lag" maxlength="200" name="support" type="url" value="<%=bot.support_server %>">
+                                    <input class="form-control" id="lag" maxlength="200" name="support_server" type="url" value="<%=data.support_server %>">
                                 </div>
                             
                             <div class="form-group">
                                     <label for="hg">Website URL</label>
                                   
-                                      <input class="form-control" name="website" id="hg" maxlength="100" type="url" value="<%= bot.website %>"></input>
+                                      <input class="form-control" name="website" id="hg" maxlength="100" type="url" value="<%= data.website %>"></input>
                                     </div>
                                     
                                     <div class="form-group">
                                     <label for="wh">Vote Wehbook URL</label>
-                                    <input class="form-control" name="wh" id="wh" type="url" value="<%= bot.wh %>"></input>
+                                    <input class="form-control" name="wh" id="wh" type="url" value="<%= data.wh %>"></input>
                                     </div>
                                     
                                     <div class="form-group">
                                     <label for="dwh" >Discord Wehbook URL</label>
-                                    <input name="dwh" class="form-control" id="dwh" type="url" value="<%= bot.dwh %>" ></input>
+                                    <input name="webhookUrl" class="form-control" id="dwh" type="url" value="<%= data.webhookUrl%>" ></input>
                                     </div>
-  <input id="v" style="display:none" value="<%= bot.vanity %>"></input>
+  <input id="v" style="display:none" value="<%= data.vanity %>"></input>
   
-  <% if(bot.certified == true) { %>
+  <% if(data.certified == true) { %>
   
 <label for="vanity">Vanity URL</label>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">https://b-o-d.cf/bots/</span>
+    <span class="input-group-text" id="basic-addon3">https://b-o-d.cf/datas/</span>
   </div>
-  <input type="text" onchange="gt('<%= bot.id%>')" name="vanity" class="form-control" value="<%= bot.vanity %>" id="vanity" aria-describedby="basic-addon3" minlength="3">
+  <input type="text" onchange="gt('<%= data.id%>')" name="vanity" class="form-control" value="<%= data.vanity %>" id="vanity" aria-describedby="basic-addon3" minlength="3">
 
   <div id="not" class="form-text" ></div></div>
-  <div onclick="get('<%= bot.id %>')" id="hj" class="btn btn-info btn-sm">check</div>
+  <div onclick="get('<%= data.id %>')" id="hj" class="btn btn-info btn-sm">check</div>
   <br>
   <br>
   
@@ -124,7 +124,7 @@
                            <% } %>       
   
             
-  <center> <button class="btn btn-success" id="btn" onclick="got('<%= bot.id %>')">Submit</button></center>
+  <center> <button class="btn btn-success" id="btn" onclick="got('<%= data.id %>')">Submit</button></center>
           
     </form>
 
@@ -177,7 +177,7 @@ for (var i = 0; i < element.options.length; i++) {
   
     }
   };
-  xhttp.open("POST", `/bots/${m}/vanity?q=${vt}`, true);
+  xhttp.open("POST", `/datas/${m}/vanity?q=${vt}`, true);
   xhttp.send();
   
 }

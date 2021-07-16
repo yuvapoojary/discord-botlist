@@ -10,13 +10,17 @@ const Bot = new mongoose.Schema({
   
   name: String,
   
+  tag: String,
+  
   discriminator: String,
   
   avatar: String,
   
   prefix: String,
   
-  invite: String,
+  invite_link: String,
+  
+  vanity_url: String,
   
   short_desc: String,
   
@@ -68,6 +72,11 @@ const Bot = new mongoose.Schema({
   },
   
   views: {
+    type: Number,
+    default: 0
+  },
+  
+  invites: {
     type: Number,
     default: 0
   },

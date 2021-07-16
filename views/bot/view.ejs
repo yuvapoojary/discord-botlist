@@ -1,78 +1,78 @@
 <head>
   
   
-	<meta name="description" content="<%= bot.short_desc%>">
+	<meta name="description" content="<%= data.short_desc%>">
 	
-	<link rel="canonical" href="https://b-o-d.cf/bots/<%= bot.name %>">
+	<link rel="canonical" href="<%= domain%>/datas/<%= data.name %>">
 	
 
 	<meta name="twitter:card" value="summary">
-	<meta name="twitter:title" content="<%= bot. name%>">
-	<meta name="twitter:description" content="<%= bot.short_desc%>">
-	<meta name="twitter:image" content="https://images.discordapp.net/avatars/<%= bot.id%>/<%= bot.avatar%>.png?size=512">
+	<meta name="twitter:title" content="<%= data. name%>">
+	<meta name="twitter:description" content="<%= data.short_desc%>">
+	<meta name="twitter:image" content="https://images.discordapp.net/avatars/<%= data.id%>/<%= data.avatar%>.png?size=512">
 
 	<meta property="og:site_name" value="BOTS OF DISCORD">
-	<meta property="og:title" content="<%= bot.name%>" />
-	<meta property="og:url" content="https://b-o-d.cf/" />
-	<meta property="og:description" content="<%= bot.short_desc%>">
-	<meta property="og:image" content="https://images.discordapp.net/avatars/<%= bot.id %>/<%= bot.avatar %>.png?size=512" />
+	<meta property="og:title" content="<%= data.name%>" />
+	<meta property="og:url" content="<%= data.domain %>" />
+	<meta property="og:description" content="<%= data.short_desc%>">
+	<meta property="og:image" content="https://images.discordapp.net/avatars/<%= data.id %>/<%= data.avatar %>.png?size=512" />
 
 </head>
 
 <%- include("../parts/header") %>
 <link rel="stylesheet" href="/view.css"/>
 <div id="66">
-<input id="h" style="display:none"  value="<%= bot.id%>"></input>
+<input id="h" style="display:none"  value="<%= data.id%>"></input>
 <div class="cnr">
   <center>
-  <div class="pic4"><img class="pic1" src="https://cdn.discordapp.com/avatars/<%= bot.id%>/<%= bot.avatar%>"></div>
+  <div class="pic4"><img class="pic1" src="https://cdn.discordapp.com/avatars/<%= data.id%>/<%= data.avatar%>"></div>
     <div class="status"><i class="i m<%=status%>"></i><a class="<%= status %> "> <%= status %></a></div>
     
-    <div class="bname"><%= bot.name %><% if(bot.certified == true){%>&nbsp; <img style="height:25px;width:25px" src="/Certificate_seal-512.png"><% } %><a class="votes"> ^ <%= bot.votes %></a> </div>
-    <div class="lib"><%= bot.library %></div>
-    <div class="shortd"><%= bot.short_desc %></div>
+    <div class="bname"><%= data.name %><% if(data.certified == true){%>&nbsp; <img style="height:25px;width:25px" src="/Certificate_seal-512.png"><% } %><a class="votes"> ^ <%= data.votes %></a> </div>
+    <div class="lib"><%= data.library %></div>
+    <div class="shortd"><%= data.short_desc %></div>
   
-    <button onclick="window.location.href='/bot/<%=bot.id %>/invite'" class="bbtn btn btn-orange btn-2x">INVITE</button> <button onclick="window.location.href='/bot/<%= bot.id %>/vote'" class="bbtn btn btn-orange btn-2x">VOTE</button>
+    <button onclick="window.location.href='/bots/<%=data.id %>/invite'" class="bbtn btn btn-orange btn-2x">INVITE</button> <button onclick="window.location.href='/bots/<%= data.id %>/vote'" class="bbtn btn btn-orange btn-2x">VOTE</button>
     </center>
   <hr>
   <div class="tools">
-    <div class="prefix">Commands Prefix:<code><%= bot.prefix%></code></div>
-    <% if(bot.server_count !== 0) { %>
-    <div class="bt"><%= bot.server_count %> servers </div>&nbsp;<% }; if(bot. shards != 0) { %> <div class="bt"> <%= bot.shards %> shards</div><% } %>
+    <div class="prefix">Commands Prefix:<code><%= data.prefix%></code></div>
+    <% if(data.server_count !== 0) { %>
+    <div class="bt"><%= data.server_count %> servers </div>&nbsp;<% }; if(data.shards != 0) { %> <div class="bt"> <%= data.shards %> shards</div><% } %>
     <br>
-    <% if(bot.website != "") { %>
-    <a href="<%= bot.website %>" class="obt a"> Visit Website</a> &nbsp;<% }; %><a class="obt b" onclick="report()" style="color: red" >Report</a>&nbsp;
+    <% if(data.website != "") { %>
+    <a href="<%= data.website %>" class="obt a"> Visit Website</a> &nbsp;<% }; %><a class="obt b" onclick="report()" style="color: red" >Report</a>&nbsp;
     
     <br>
-    <% if(bot.support_server != "") { %>
-    <a href="<%= bot.support_server %>" class="obt c">Support Server</a>&nbsp;<% }; if(bot.github != "") { %>
-    <a href="<%= bot.github %>" class="obt d">Github Repo</a><% } %>
+    <% if(data.support_server != "") { %>
+    <a href="<%= data.support_server %>" class="obt c">Support Server</a>&nbsp;<% }; if(data.github != "") { %>
+    <a href="<%= data.github %>" class="obt d">Github Repo</a><% } %>
     <br>
     <% if(user){ %>
-    <% if(bot.owners.includes(user.id) || user.isAdmin) { %>
-    <a  href="/bot/<%= bot.id %>/edit" class="obt f">Edit</a>&nbsp;<% } ; if(bot.owner == user.id) { %><a href="/bot/<%= bot.id %>/delete" class="obt g" style="color: red">Delete</a><% } %>
-    <% if(user.isMod == true) { %>
+    <% if(data.owners.includes(user.id) || user.isAdmin) { %>
+    <a  href="/bots/<%= data.id %>/edit" class="obt f">Edit</a>&nbsp;<% } ; if(data.owner == user.id) { %><a href="/bots/<%= data.id %>/delete" class="obt g" style="color: red">Delete</a><% } %>
+    <% if(user.isStaff == true) { %>
     <br>
     <select class="obt" onchange="window.document.location.href = this.options[this.selectedIndex].value">
       
       <option disabled selected>Staff</option>
-      <option value="https://discordapp.com/oauth2/authorize?client_id=<%= bot.id %>&scope=bot&guild_id=642735787468914708">Test Invite</option>
+      <option value="https://discordapp.com/oauth2/authorize?client_id=<%= data.id %>&scope=data&guild_id=642735787468914708">Test Invite</option>
       <% if(user.isAdmin == true) { %>
-      <option value="https://discordapp.com/oauth2/authorize?client_id=<%= bot.id %>&scope=bot&guild_id=642339855313141761">Main Invite</option>
+      <option value="https://discordapp.com/oauth2/authorize?client_id=<%= data.id %>&scope=data&guild_id=642339855313141761">Main Invite</option>
       <% } %>
-      <% if(bot.approved == false) { %>
-      <option value="/staff/<%= bot.id%>/approve">Approve</option>
+      <% if(data.approved == false) { %>
+      <option value="/staff/<%= data.id%>/approve">Approve</option>
       <% } %>
-      <option value="/staff/<%= bot.id %>/deny">Deny</option>
+      <option value="/staff/<%= data.id %>/deny">Deny</option>
       
       <% if(user.isAdmin == true) { %>
-      <% if(bot.certified == true) { %>
-      <option value="/staff/<%= bot.id%>/uncertify">Uncertify</option>
+      <% if(data.certified == true) { %>
+      <option value="/staff/<%= data.id%>/uncertify">Uncertify</option>
       <% } %>
-      <% if(bot.blacklist == false) { %>
-      <option value="/staff/<%= bot.id%>/blacklist">Blacklist</option>
+      <% if(data.blacklist == false) { %>
+      <option value="/staff/<%= data.id%>/blacklist">Blacklist</option>
       <% } else { %>
-      <option  value="/staff/<%= bot.id%>/unblacklist">Unblacklist</option>
+      <option  value="/staff/<%= data.id%>/unblacklist">Unblacklist</option>
       <% } %>
       <% } %>
     </select>
@@ -80,8 +80,8 @@
 </div>
   <hr>
   <div class="t">
-    <div class="ttag">Bot Tags:</div>
-    <% bot.tags.map(tag => { %>
+    <div class="ttag">data Tags:</div>
+    <% data.tags.map(tag => { %>
   <div class="atag" style="text-transform:capitalize"><%= tag %></div>
     <% }) %>
   
@@ -90,16 +90,16 @@
 
     <div class="ttag" style="margin-left:10px">Created By:</div>
   <div class="own">
-<% owners.map(m => { console.log(m); %>
-    
+<% owners.map(item => { %>
+
   <div style="margin-left:40px; display: flex;align-items: center;justify-content: center">
   
   
-<a href="/user/<%=m.id %>">
+<a href="/users/<%=item.id %>">
 	<span class="chip chip-avatar info" >
-		<img src="https://cdn.discordapp.com/avatars/<%= m.id %>/<%=m.avatar %>.png" alt="">
+		<img src="https://cdn.discordapp.com/avatars/<%= item.id %>/<%=item.avatar %>.png" alt="">
     <div class="badname">
-		<label><%= m.username %></label>
+		<label><%= item.username %></label>
     </div>
 	</span>
     </a>
@@ -112,7 +112,7 @@
 
       <div class="long justify-content-center">
         <div id="d" class="desc">
-        <%- desc %>
+        <%- bot.long_desc %>
         </div>
       </div>
 
@@ -129,7 +129,7 @@
       this.responseText;
     }
   };
-  xhttp.open("GET", `/bot/${id}/vote`, true);
+  xhttp.open("GET", `/data/${id}/vote`, true);
   xhttp.send();
 };
   function report() {
@@ -146,7 +146,7 @@
     
       }
     };
-    xhttp. open("GET",`/bot/${id}/report`,true);
+    xhttp. open("GET",`/data/${id}/report`,true);
     xhttp. send ()
   }
   
