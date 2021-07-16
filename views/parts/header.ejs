@@ -1,75 +1,23 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<% let tit = "BOTS OF DISCORD";let des = "A discord botlist.";
-if(typeof title === "string"){ tit = title; des = "BOTS OF DISCORD" } %>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-
-
-<title><%= tit %> | <%= des %></title>
- 
-  
- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-  
- 
- 
-  
-  
-
-
-  <meta name="theme-color" content="#6f85d8">
- <meta name="google-site-verification" content="o8w4h5cCqWF11rSzYGju47de78XZsJwAfriKId71Nk0" />
- 
-  <meta charset="utf-8">
-  <meta name="apple-mobile-web-app-title" content="BOTS OF DISCORD">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="user-scalable=no, initial-scale=1, width=device-width, height=device-height"/>
- 
-  
-
-  <meta name="author" content="DEF4ULT">
-  
-	<meta name="description" content="Embellish your discord experience with our directory of creative discord bots.">
-	<meta name="twitter:card" content="summary">
-	<meta name="twitter:title" content="BOTS OF DISCORD">
-	<meta name="twitter:description" content="Embellish your discord experience with our directory of creative discord bots.">
-	<meta name="twitter:image" content="https://images.discordapp.net/avatars/644375115219337216/8e7a3b45df0652554623e538fb054bad.png?size=512">
-
-	<meta property="og:site_name" content="BOTS OF DISCORD">
-	<meta property="og:title" content="BOTS OF DISCORD" />
-	<meta property="og:description" content="Embellish your discord experience with our directory of creative discord bots.">
-	<meta property="og:image" content="https://images.discordapp.net/avatars/644375115219337216/8e7a3b45df0652554623e538fb054bad.png?size=512" />
-  <meta name="title" content="Home">
-  <meta name="keywords" content="Embellish, invite,discord,bot,list,a,discord bot,bot list,bots,bots of,bots of discord,bod,bod bots, certify,tags,embellish , experience,discordbots,discordapp
-,bod,DBL, BOTS,DISCORD,online,Bod,b-o-d.cf,bodapi,bots,list,directory,creative,free,sitemap,view,invites,a discord,creative,google">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="/custom.css"/>
-
-  
+    <title>BOTS OF DISCORD</title>
   </head>
-  
-  <body>
- <h1 style="display:none">BOTS OF DISCORD</h1>
-
- 
-
-
-
-          <div class="">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary ">
-  <a class="navbar-brand"><img class="img" src="https://cdn.discordapp.com/attachments/624096233455222795/686201193139273776/eraser.png" alt="bod" /></a>
-  
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+  <a class="navbar-brand" href="#">BOTS OF DISCORD</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -77,73 +25,32 @@ if(typeof title === "string"){ tit = title; des = "BOTS OF DISCORD" } %>
         <a class="nav-link" href="/bots">Bots</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="https://discord.gg/SQmfu42">Community
-        </a>
+        <a class="nav-link" href="https://discord.gg/ATrxZrT">Community</a>
       </li>
-      
+      <li class="nav-item">
+        <a class="nav-link" href="/add">Add Bot</a>
+      </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           API
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <% if(user) { %>
-          <a class="dropdown-item" style="color: black" href="/api/token">Token</a>
-          <% } %>
-          <a class="dropdown-item"  style="color: black" href="https://docs.b-o-d.cf">Docs</a>
-          
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/api/token">Token</a>
+          <a class="dropdown-item" href="#">Docs</a>
         </div>
       </li>
-      <% if(user) {%>
-      <li class="nav-item">
-        <a class="nav-link" href="/bots/add">Add Bot</a>
-      </li>
-      <% } %>
-      <li class="nav-item">
-        <a class="nav-link" href="/bot/certification">Certification</a>
-      </li>
-      <% if(user) { if(user.isMod ) {%>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Staff
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          DEF4ULT#1422
         </a>
-        <div class="dropdown-menu" aria-lebelledby="navbarDropdown">
-          <a class="dropdown-item" style="color: black" href="/staff/queue">Queue</a>
-          <a class="dropdown-item" style="color: black" href="/staff/blacklisted">Blacklisted</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/users/:id">Profile</a>
+          <a class="dropdown-item" href="/logout">Logout</a>
         </div>
       </li>
-      <% }} else {%>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Login</a>
-                                           </li>
-      <% } %>
-      <% if(user) { %>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= user.username %>
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" style="color: black" href="/user/<%= user.id%>">Profile</a>
-          <a class="dropdown-item" style="color: Black" href="/logout">Logout</a>
-        </div>
-      </li>
-      <% } %>
     </ul>
-  
   </div>
 </nav>
-    </div>
-   
- 
-	
-		
-		
-		
-		
-		
-	
-	
-
-
-
-
-
+  </header>
+  <body>
+    
