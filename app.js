@@ -34,7 +34,6 @@ app.set('view engine', 'ejs');
 
 app.use([
   compress(),
-  helmet(),
   express.static('static'),
   express.json(),
 ]);
