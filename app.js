@@ -30,6 +30,19 @@ mongoose.set('debug', true);
 
 app.set('view engine', 'ejs');
 
+app.use([
+  compress(),
+  express.static('static'),
+  express.json(),
+]);
+
+app.use((req, res, next) => {
+  const user = req.session && req.session.user;
+  res.locals.user = user;
+  req.user = user;
+  next();
+});
+
 app.use(
   session({
     saveUninitialized: false,
@@ -43,19 +56,6 @@ app.use(
     },
   })
 );
-
-app.use([
-  compress(),
-  express.static('static'),
-  express.json(),
-]);
-
-app.use((req, res, next) => {
-  const user = req.session && req.session.user;
-  res.locals.user = user;
-  req.user = user;
-  next();
-});
 
 app.use(bodyParser.json());
 app.use(

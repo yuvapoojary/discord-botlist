@@ -49,7 +49,7 @@ router.get('/callback', async (req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   
-  delete req.session && req.session.backURL;
+  if(req.session) delete req.session.backURL;
   req.session.destroy(() => {
     res.redirect('/');
   });
