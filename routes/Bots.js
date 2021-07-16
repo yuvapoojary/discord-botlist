@@ -42,11 +42,11 @@ router.get('/', async(req, res, next) => {
 });
 
 
-router.post('/', auth.serverCheck(), (req, res, next) => {
+router.post('/', auth.serverCheck, (req, res, next) => {
   res.send(200);
 });
 
-router.get('/add', auth.serverCheck(), (req, res, next) => {
+router.get('/add', auth.serverCheck, (req, res, next) => {
   res.render('bot/add', {
     libs,
     tags
