@@ -29,15 +29,15 @@ mongoose.connect(config.mongoURL, {
 });
 mongoose.set('debug', true);
 
-app.use([
-  helmet(),
-  logger('dev'),
-  compress(),
-  express.static('static'),
-  express.json()
-]);
 
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
+
+app.use([
+  compress(),
+  helmet(),
+  express.static('static'),
+  express.json(),
+]);
 
 app.use((req, res, next) => {
   res.locals.user = req.user;
