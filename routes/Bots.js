@@ -42,8 +42,22 @@ router.get('/', async(req, res, next) => {
 });
 
 
-router.post('/', auth.serverCheck, (req, res, next) => {
-  res.send(200);
+router.post('/', auth.serverCheck, async(req, res, next) => {
+  
+  const info = await client.users.fetch(req.body.id);
+  if(!info) return res.send('Invalid bot id');
+  if(!info.bot) return res.send('Id is not a bot id');
+  
+  const bot = new Bot({
+    ...req.body,
+    ...info
+  });
+  
+  bot.save((err, data) => {
+    if(err) return next(err);
+    res.redirect('/bots');
+  });
+  
 });
 
 router.get('/add', auth.serverCheck, (req, res, next) => {

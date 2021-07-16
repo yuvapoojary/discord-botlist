@@ -5,8 +5,7 @@ const url = require("url");
 const event = require("events");
 const mongoose = require('mongoose');
 const config = require('./config');
-const flash = require('connect-flash');
-const flashexpress = require('flash-express');
+const flash = require('express-flash');
 const session = require('express-session');
 const logger = require("morgan");
 const { ensureLoggedIn } = require("connect-ensure-login");
@@ -50,8 +49,8 @@ app.use(
   })
 );
 
+
 app.use((req, res, next) => {
-  console.log(req.session)
   const user = req.session && req.session.user;
   res.locals.user = user;
   req.user = user;
