@@ -16,8 +16,6 @@ router.get('/callback', async (req, res, next) => {
   try {
   const user = await Oauth2.getUserByCode(req.query.code);
   
-  req.session.user = user;
-  
   User.findOne({ id: user.id })
   .then((data) => {
     if(!data) {
@@ -35,6 +33,7 @@ router.get('/callback', async (req, res, next) => {
     
     data.save((err, doc) => {
       if(err) return next(err);
+      req.session.user = doc.toJSON();
       if(req.session.backURL) return res.redirect(req.session.backURL);
       res.redirect('/');
     });
