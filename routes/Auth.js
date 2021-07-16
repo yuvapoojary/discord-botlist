@@ -2,6 +2,7 @@ const router = require('express').Router();
 const passport = require('passport');
 const Strategy = require('passport-discord').Strategy;
 const User = require('../models/User');
+const config = require('../config');
 
 passport.serializeUser((user, done) => {
   done(null, user);
