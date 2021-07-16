@@ -87,10 +87,10 @@ module.exports = (client, message) => {
     };
   };
   // make sure message starts with prefix
-  if (message.content.indexOf(client.config.bot.prefix) !== 0) return;
+  if (message.content.indexOf(client.config.bot_prefix) !== 0) return;
 
   // slice off prefix & command, we're left with parameters.
-  const args = message.content.slice(client.config.bot.prefix.length).trim().split(/ +/g);
+  const args = message.content.slice(client.config.bot_prefix.length).trim().split(/ +/g);
   // slices off the params, lowercases the command name. we're left with command name
   const command = args.shift().toLowerCase();
 
