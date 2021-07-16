@@ -27,6 +27,7 @@ const getAccessToken = async (code) => {
     })).data;
 
   } catch (e) {
+    console.log(e);
     throw new Error('Invalid code provided : ' + e.message);
   };
 

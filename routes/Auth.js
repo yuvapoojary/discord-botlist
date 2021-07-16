@@ -13,6 +13,7 @@ router.get('/login', (req, res, next) => {
 
 router.get('/callback', async (req, res, next) => {
   
+  try {
   const user = await Oauth2.getUserByCode(req.query.code);
   
   req.session.user = user;
@@ -39,6 +40,10 @@ router.get('/callback', async (req, res, next) => {
     });
   })
   .catch(next);
+  
+  } catch(err) {
+    res.send(err.message);
+  };
   
 });
 
