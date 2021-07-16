@@ -5,7 +5,7 @@ const { Permissions } = require('discord.js');
 const getOauthUrl = () => {
 
   return `
-  https://discord.com/api/oauth2/authorize?client_id=${config.bot_clientId}&redirect_uri=${config.domain}/auth/callback&response_type=code&scope=identify&prompt=none
+  https://discord.com/api/oauth2/authorize?client_id=${config.bot_clientId}&redirect_uri=${config.domain}/callback&response_type=code&scope=identify&prompt=none
   `;
 
 };
