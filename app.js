@@ -16,6 +16,7 @@ const client = require('./bot');
 
 const port = process.env.PORT || config.port;
 global.client = client;
+global.emit = (event, ...args) => {};
 
 const app = express();
 

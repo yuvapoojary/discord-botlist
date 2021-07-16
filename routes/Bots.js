@@ -93,24 +93,54 @@ router.get('/add', auth.serverCheck, (req, res, next) => {
 
 
 router.get('/:id', (req, res, next) => {
-  
+
   Bot.findOne({
-    $or: [
-      { id: req.params.id },
-      { vanity_url: req.params.id }
+      $or: [
+        { id: req.params.id },
+        { vanity_url: req.params.id }
     ]
-  })
+    })
+    .lean()
+    .then((data) => {
+      if (!data) return res.status(404).render('404');
+      const bot = client.users.cache.get(data.id);
+      res.render('bot/view', {
+        data,
+        status: (bot && bot.presence) ? bot.presence.status : 'offline'
+      });
+      emit('botView', data, req.user);
+    })
+    .catch(next);
+
+});
+
+router.get('/:id/invite', (req, res, next) => {
+  
+  Bot.findOne({ id: req.params.id })
+  .lean()
   .then((data) => {
-    if(!data) return res.status(404).render('404');
-    const bot = client.users.cache.get(data.id);
-    res.render('bot/view', {
-      data,
-      status: (bot && bot.presence) ? bot.presence.status : 'offline'
-    });
+    if(!data) return res.render('404');
+    res.redirect(data.invite_url);
+    emit('botInvite', data, req.user);
   })
   .catch(next);
   
 });
 
 
-    module.exports = router;
+router.get('/:id/vote', auth.perm(), (req, res, next) => {
+  
+  Bot.findOne({ id: req.params.id })
+  .lean()
+  .then((data) => {
+    if(!data) return res.render('404');
+    res.render('bot/vote', {
+      data
+    });
+    emit('botVote',data, req.user);
+  })
+  .catch(next);
+  
+});
+
+module.exports = router;
