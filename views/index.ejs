@@ -1,5 +1,44 @@
-
 <%- include("./parts/header") %>
-
+  <style>
+    .hdm {
+      font-weight:bold;
+      color:#434f81;
+      font-size:21px;
+      align:center;
+      text-align:center;
+      text-decoration: underline;
+    }
+  </style>
+  <div class="intro">
+  </div>
+  
+  <div class="hdm">Top voted bots </div>
+  <%- include("./parts/card",{ data: voted,_client}) %>
+  <% if(promoted.length >= 1) { %>
+  <div class="hdm">Promoted Bots</div>
+  <%- include("./parts/card",{data: promoted,_client}); %>
+  <% } %>
+  <div class="hdm">Top popular bots</div>
+  <%- include("./parts/card",{data: popular,_client}) %>
+  <% if(certified.length >= 1) { %>
+  <div class="hdm">Top certified bots</div>
+  <%- include("./parts/card",{data: certified,_client}) %>
+  <% }; %>
+  
+  <br>
+  <center>
+    <div class=bx-t>Suggested Tags</div>
+  <div class="justify-content-center  bx">
+    
+    <div class="">
+   <% tags.map(tag => { %>
+    <button onclick="window.location.href= '/bots?tag=<%= tag %>'" class="btn btn-outline-primary btn-sm bgi"><%=tag %></button>
+    <% }) %>
+    </div>
+  </div>
+  </center>
+  <br>
+  
+  <center><button onclick="window.location.href = '/bots'" class="btn btn-success">Explore more</button></center>
   
   <%- include("./parts/footer.ejs") %>
