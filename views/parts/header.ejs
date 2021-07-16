@@ -35,18 +35,25 @@
           API
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <% if(user) { %>
           <a class="dropdown-item" href="/api/token">Token</a>
+          <% } %>
           <a class="dropdown-item" href="#">Docs</a>
         </div>
       </li>
+      <% if(user) { %>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          DEF4ULT#1422
+          <%= user.tag %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="/users/:id">Profile</a>
+          <a class="dropdown-item" href="/users/<%= user.id %>">Profile</a>
           <a class="dropdown-item" href="/logout">Logout</a>
         </div>
+      </li>
+      <% } else { %>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Login</a>
       </li>
     </ul>
   </div>
