@@ -49,7 +49,7 @@
     <a href="<%= data.github %>" class="obt d">Github Repo</a><% } %>
     <br>
     <% if(user){ %>
-    <% if(data.owners.includes(user.id) || user.isAdmin) { %>
+    <% if(data.owner == user.id || data.owners.includes(user.id) || user.isAdmin) { %>
     <a  href="/bots/<%= data.id %>/edit" class="obt f">Edit</a>&nbsp;<% } ; if(data.owner == user.id) { %><a href="/bots/<%= data.id %>/delete" class="obt g" style="color: red">Delete</a><% } %>
     <% if(user.isStaff == true) { %>
     <br>
