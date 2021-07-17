@@ -91,6 +91,43 @@ router.get('/add', auth.serverCheck, (req, res, next) => {
   });
 });
 
+router.get('/certification', auth.perm(), (req, res, next) => {
+
+  Bot.find({ owner: req.user.id })
+    .lean()
+    .then((data) => {
+      res.render('bot/certification', {
+        data
+      });
+    })
+    .catch(next);
+
+});
+
+router.post('/certification', auth.perm(), (req, res, next) => {
+
+  Bot.findOne({ id: req.body.id, owner: req.user.id })
+    .then((data) => {
+      if (!data) return res.render('404');
+      const errors = [];
+      if (data.server_count == 0) errors.push('You must post your server count through our API');
+      if (!data.support_server) errors.push("You must add support server");
+      if (data.votes < 10) errors.push("Your bot must have atleast 10 votes");
+      if (data.server_count < 50) errors.push("Your bot must be in atleast 50 servers");
+      
+      if(errors.length) return res.render('staff/certi', { data, errors });
+      
+      data.certified = true;
+      data.save((err) => {
+        if(err) return next(err);
+        emit('botCertified', data, req.user);
+        res.redirect(`/bots/${data.id}`);
+      });
+      
+    })
+    .catch(next);
+
+});
 
 router.get('/:id', (req, res, next) => {
 
@@ -143,7 +180,7 @@ router.get('/:id/vote', auth.perm(), (req, res, next) => {
 
 });
 
-router.get('/:id/edit', (req, res, next) => {
+router.get('/:id/edit', auth.perm(), (req, res, next) => {
 
   Bot.findOne({ id: req.params.id })
     .lean()
@@ -161,12 +198,12 @@ router.get('/:id/edit', (req, res, next) => {
 });
 
 
-router.post('/:id/edit', (req, res, next) => {
+router.post('/:id/edit', auth.perm(), (req, res, next) => {
 
   const fields = ['prefix', 'short_desc', 'long_desc', 'tags', 'library', 'support_server', 'github', 'website', 'owners', 'invite_link'];
 
   Bot.findOne({ id: req.params.id })
-    .then(async(data) => {
+    .then(async (data) => {
       if (!data) return res.render('404');
       if (data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to edit bot');
       for (const key of fields) {
@@ -185,31 +222,31 @@ router.post('/:id/edit', (req, res, next) => {
 
 });
 
-router.get('/:id/delete', (req, res, next) => {
-  
+router.get('/:id/delete', auth.perm(), (req, res, next) => {
+
   Bot.findOne({ id: req.params.id })
-  .then((data) => {
-    if(!data) return res.render('404');
-    if(data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to delete bot');
-    res.render('bot/delete', {
-      data
-    });
-  })
-  .catch(next);
-  
+    .then((data) => {
+      if (!data) return res.render('404');
+      if (data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to delete bot');
+      res.render('bot/delete', {
+        data
+      });
+    })
+    .catch(next);
+
 });
 
-router.post('/:id/delete', (req, res, next) => {
-  
+router.post('/:id/delete', auth.perm(), (req, res, next) => {
+
   Bot.findOne({ id: req.params.id })
-  .then(async(data) => {
-    if(!data) return res.render('404');
-    if(data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to delete bot');
-    await data.remove();
-    res.redirect('/');
-  })
-  .catch(next);
-  
+    .then(async (data) => {
+      if (!data) return res.render('404');
+      if (data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to delete bot');
+      await data.remove();
+      res.redirect('/');
+    })
+    .catch(next);
+
 });
 
 

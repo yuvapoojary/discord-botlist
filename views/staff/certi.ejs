@@ -8,9 +8,9 @@
     <div class="hg">Following requirements are missing:</div>
     
    <div class="tf">
-  <% dat.map(m => { %>
-   <div style="padding:5px;color: white;"><a style="color:red; font-size:20px;padding-top:5px;">⏺️</a> <%= m %></div>
-     <%})%>
+  <% errors.map(error => { %>
+   <div style="padding:5px;color: white;"><a style="color:red; font-size:20px;padding-top:5px;">⏺️</a> <%= error %></div>
+     <% }) %>
              </div>
   </div>
 

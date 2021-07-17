@@ -322,19 +322,7 @@ router.post("/certification", async (req, res) => {
   if (d.server_count == 0) {
     dat.push("You bot must use servercount API .");
   }
-  if (d.support_server == "") {
-    dat.push("You must add support server");
-  }
-  if (d.votes < 10) {
-    dat.push("Your bot must have atleast 10 votes");
-  }
-  if (d.server_count < 50) {
-    dat.push("Your bot must be in atleast 50 servers");
-  }
-  if (!d.long_desc.includes(html)) {
-    dat.push("You must use html or markdown in long description");
-  }
-
+  
   if (
     d.support_server == "" ||
     d.votes < 10 ||
