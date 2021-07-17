@@ -115,32 +115,74 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.get('/:id/invite', (req, res, next) => {
-  
+
   Bot.findOne({ id: req.params.id })
-  .lean()
-  .then((data) => {
-    if(!data) return res.render('404');
-    res.redirect(data.invite_url);
-    emit('botInvite', data, req.user);
-  })
-  .catch(next);
-  
+    .lean()
+    .then((data) => {
+      if (!data) return res.render('404');
+      res.redirect(data.invite_url);
+      emit('botInvite', data, req.user);
+    })
+    .catch(next);
+
 });
 
 
 router.get('/:id/vote', auth.perm(), (req, res, next) => {
-  
+
   Bot.findOne({ id: req.params.id })
-  .lean()
-  .then((data) => {
-    if(!data) return res.render('404');
-    res.render('bot/vote', {
-      data
-    });
-    emit('botVote',data, req.user);
-  })
-  .catch(next);
-  
+    .lean()
+    .then((data) => {
+      if (!data) return res.render('404');
+      res.render('bot/vote', {
+        data
+      });
+      emit('botVote', data, req.user);
+    })
+    .catch(next);
+
+});
+
+router.get('/:id/edit', (req, res, next) => {
+
+  Bot.findOne({ id: req.params.id })
+    .lean()
+    .then((data) => {
+      if (!data) return res.render('404');
+      if (data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to edit the bot');
+      res.render('bot/edit', {
+        data,
+        libs,
+        tags
+      });
+    })
+    .catch(next);
+
+});
+
+
+router.post('/:id/edit', (req, res, next) => {
+
+  const fields = ['prefix', 'short_desc', 'long_desc', 'tags', 'library', 'support_server', 'github', 'website', 'owners', 'invite_link'];
+
+  Bot.findOne({ id: req.user.id })
+    .then(async(data) => {
+      if (!data) return res.notfound();
+      if (data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to edit bot');
+      for (const key of fields) {
+        data[key] = req.body[key];
+      };
+      const bot = await client.users.fetch(data.id);
+      data.name = bot.username;
+      data.avatar = bot.avatar;
+
+      data.save((err, doc) => {
+        if (err) return next(err);
+        res.redirect(`/bots/${data.id}`);
+      });
+    })
+    .catch(next);
+
 });
 
 module.exports = router;

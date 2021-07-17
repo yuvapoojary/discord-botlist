@@ -32,12 +32,12 @@
   }
 </style>
   <div class="box">
-<form method="POST">
+<form action="/bots/<%= data.id %>/delete" method="POST">
 
   
   
   <div class="container is-fluid">
-    Are sure want to delete bot <code><%= botn%> </code> ?
+    Are sure want to delete bot <code><%= data.name%> </code> ?
       <center>
         
         <button type="submit" class="btn btn-danger">Delete</button>

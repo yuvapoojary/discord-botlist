@@ -95,7 +95,7 @@
 <div class="row justify-content-center">
   
   <div class="card-group">
-<% arr.map(bot => { %>
+<% data.map(bot => { %>
     
   <div class="card  justify-content-center" style="width:215px;height:220px;margin-left:10px;" id="bi">
     <div class="card-header"><%= bot.name %></div>
@@ -105,7 +105,7 @@
     
       <p><input type="password"  style="text-align:center" class="form-control form-control-sm" id="<%= bot.id %>" name="<%= bot.id %>" value="<%= bot.token %>"></input></p>
     <div class="card-footer justify-content-center">
-      <a class="btn btn-warning btn-sm" id="g<%= bot.id %>" onclick="show('<%= bot.id %>')">Show</a> &nbsp; &nbsp; <a href="/api/token/reset?id=<%=bot.id %>" style="color: black" class="btn btn-warning btn-sm">Reset</a>
+      <a class="btn btn-warning btn-sm" id="g<%= bot.id %>" onclick="show('<%= bot.id %>')">Show</a> &nbsp; &nbsp; <a href="/bots/<%= bot.id %>/resettoken" style="color: black" class="btn btn-warning btn-sm">Reset</a>
       </div>
   
   </div>
