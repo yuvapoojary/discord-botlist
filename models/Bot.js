@@ -20,7 +20,10 @@ const Bot = new mongoose.Schema({
   
   invite_link: String,
   
-  vanity_url: String,
+  vanity_url: {
+    type: String,
+    lowercase: true 
+  },
   
   short_desc: String,
   
@@ -62,7 +65,7 @@ const Bot = new mongoose.Schema({
   },
   
   shards: {
-    type: Boolean,
+    type: Number,
     default: 0
   },
   
