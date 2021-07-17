@@ -165,9 +165,9 @@ router.post('/:id/edit', (req, res, next) => {
 
   const fields = ['prefix', 'short_desc', 'long_desc', 'tags', 'library', 'support_server', 'github', 'website', 'owners', 'invite_link'];
 
-  Bot.findOne({ id: req.user.id })
+  Bot.findOne({ id: req.params.id })
     .then(async(data) => {
-      if (!data) return res.notfound();
+      if (!data) return res.render('404');
       if (data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to edit bot');
       for (const key of fields) {
         data[key] = req.body[key];
