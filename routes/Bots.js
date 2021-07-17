@@ -185,4 +185,32 @@ router.post('/:id/edit', (req, res, next) => {
 
 });
 
+router.get('/:id/delete', (req, res, next) => {
+  
+  Bot.findOne({ id: req.params.id })
+  .then((data) => {
+    if(!data) return res.render('404');
+    if(data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to delete bot');
+    res.render('bot/delete', {
+      data
+    });
+  })
+  .catch(next);
+  
+});
+
+router.post('/:id/delete', (req, res, next) => {
+  
+  Bot.findOne({ id: req.params.id })
+  .then(async(data) => {
+    if(!data) return res.render('404');
+    if(data.owner != req.user.id && !data.owners.includes(req.user.id)) return res.send('You do not have permission to delete bot');
+    await data.remove();
+    res.redirect('/');
+  })
+  .catch(next);
+  
+});
+
+
 module.exports = router;
